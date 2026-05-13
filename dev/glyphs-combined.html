@@ -1,0 +1,2790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>140-Segment Glyph Specimen — 3×7 Dot Matrix · Chisel + Curves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ece1;
+    --paper-2: #e8e2d3;
+    --ink:   #1a1814;
+    --ink-2: #6b665b;
+    --red:   #b8231e;
+    --rule:  #1a1814;
+    --dot-off: rgba(26,24,20,0.18);
+    --seg-off: rgba(26,24,20,0.07);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 48px clamp(20px, 4vw, 64px) 96px;
+    background-image:
+      radial-gradient(rgba(26,24,20,0.05) 1px, transparent 1px),
+      radial-gradient(rgba(26,24,20,0.03) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  .frame {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* ─── masthead ──────────────────────────────────────────── */
+  .head {
+    border-top: 6px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    padding: 22px 0 18px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+  .head h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 0.95;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .head h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .head .meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    text-align: right;
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .head .meta strong { color: var(--ink); font-weight: 700; }
+  .head .meta .stamp {
+    display: inline-block;
+    border: 1.5px solid var(--red);
+    color: var(--red);
+    padding: 3px 9px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* ─── note ──────────────────────────────────────────────── */
+  .note {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    max-width: 920px;
+    margin: 0 0 56px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 28px;
+  }
+  .note .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--red);
+    padding-top: 4px;
+    border-top: 2px solid var(--red);
+    align-self: start;
+  }
+  .note p { margin: 0 0 10px; }
+  .note p:last-child { margin: 0; }
+  .note .figure { color: var(--red); font-weight: 500; }
+
+  /* ─── section headers ───────────────────────────────────── */
+  .sec {
+    border-top: 2px solid var(--rule);
+    padding: 14px 0 0;
+    margin: 56px 0 24px;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .sec .n {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--red);
+    line-height: 1;
+  }
+  .sec h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .sec .count {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-2);
+  }
+
+  /* ─── key diagram ───────────────────────────────────────── */
+  .key-groups {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .key-group {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .key-group .group-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    padding-top: 8px;
+    border-top: 1.5px solid var(--red);
+    line-height: 1.5;
+  }
+  .key-group .group-label .group-name { color: var(--ink); display: block; font-weight: 700; }
+  .key-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .key-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 50px;
+  }
+  .key-item svg { width: 36px; height: auto; display: block; }
+  .key-item .idx {
+    font-size: 10px;
+    color: var(--red);
+    font-weight: 500;
+  }
+  .key-item .endpoints {
+    font-size: 9px;
+    color: var(--ink-2);
+  }
+
+  /* ─── glyph grid ────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    gap: 0;
+    border-left: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+  }
+  .cell {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 8px 10px;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.12s;
+    position: relative;
+  }
+  .cell:hover { background: var(--paper-2); }
+  .cell.active { background: #fff8ee; }
+  .cell svg {
+    width: 44px;
+    height: auto;
+    display: block;
+  }
+  .cell .label {
+    font-size: 11px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .cell .label .ch {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* SVG content classes (only the optional segment-number labels
+     still need styling; segment lines/polygons and dots are styled
+     inline by drawSegment so the same renderer reproduces correctly
+     on both light and dark backgrounds). */
+  .key-svg .seg-num {
+    fill: var(--red);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 500;
+  }
+
+  /* Per-character kern selector under each specimen cell. */
+  .cell .kern {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .cell .kern-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-2);
+    opacity: 0.55;
+  }
+  .cell .kern-input {
+    width: 46px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    border: 1px solid rgba(26,24,20,0.18);
+    background: var(--paper);
+    padding: 2px 4px;
+    color: var(--ink);
+    -moz-appearance: textfield;
+  }
+  .cell .kern-input::-webkit-inner-spin-button,
+  .cell .kern-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .cell .kern-input:focus {
+    outline: none;
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* ─── glyph editor (opens when a cell is clicked) ──────── */
+  .editor {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 20px;
+    border-left: 4px solid var(--red);
+    z-index: 100;
+    width: 460px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    transform: translateY(140%);
+    transition: transform 0.22s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+  .editor.show { transform: translateY(0); }
+  .editor-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(241,236,225,0.16);
+  }
+  .editor-head .ch-big {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--paper);
+  }
+  .editor-label-wrap { flex: 1; line-height: 1.3; }
+  .editor-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(241,236,225,0.55);
+  }
+  .editor-name {
+    font-size: 11px;
+    color: rgba(241,236,225,0.9);
+  }
+  .close-btn {
+    background: none;
+    border: 1px solid rgba(241,236,225,0.3);
+    color: var(--paper);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1;
+    font-family: inherit;
+  }
+  .close-btn:hover { background: var(--red); border-color: var(--red); }
+
+  /* Stage now stacks above meta, full panel width. */
+  .editor-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .editor-stage {
+    background: rgba(241,236,225,0.05);
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 380px;
+  }
+  .editor-stage svg {
+    max-width: 100%;
+    height: auto;
+    max-height: 480px;
+  }
+
+  .editor-meta { font-size: 11px; line-height: 1.5; color: rgba(241,236,225,0.85); }
+  .meta-row { margin-bottom: 6px; }
+  .meta-label {
+    color: rgba(241,236,225,0.55);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    min-width: 60px;
+  }
+  .meta-val {
+    color: #ff6b62;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    word-break: break-all;
+  }
+  .meta-val.muted {
+    color: rgba(241,236,225,0.45);
+    font-weight: 400;
+  }
+  .editor-actions { display: flex; gap: 6px; margin-top: 12px; }
+  .editor-actions button {
+    background: transparent;
+    border: 1px solid rgba(241,236,225,0.3);
+    color: var(--paper);
+    font-family: inherit;
+    font-size: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .editor-actions button:hover { background: var(--red); border-color: var(--red); }
+  .editor-hint {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(241,236,225,0.12);
+    font-size: 10px;
+    color: rgba(241,236,225,0.5);
+    font-style: italic;
+  }
+
+  /* ─── designer ──────────────────────────────────────────── */
+  .designer {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(420px, 1.5fr);
+    gap: 40px;
+    align-items: start;
+    border: 1px solid var(--rule);
+    padding: 28px;
+    background: #faf6ec;
+  }
+  .designer .stage {
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(26,24,20,0.18);
+    padding: 16px;
+    background: var(--paper);
+    overflow: hidden;
+    cursor: text;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .designer .stage:focus,
+  .designer .stage:focus-visible {
+    outline: none;
+    border-color: var(--red);
+    border-style: solid;
+    background: #fffaef;
+  }
+  .designer .stage svg {
+    max-width: 100%;
+    max-height: 340px;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+  .cursor-blink {
+    animation: cursor-blink 1.05s step-end infinite;
+  }
+  @keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+  .raw-preview {
+    display: block;
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: var(--paper);
+    border: 1px solid rgba(26,24,20,0.15);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    word-break: break-word;
+    white-space: pre-wrap;
+    min-height: 1.8em;
+    line-height: 1.4;
+  }
+  .raw-preview:empty::before {
+    content: '—';
+    color: var(--ink-2);
+  }
+  .designer .controls h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    margin: 0 0 6px;
+    font-size: 20px;
+  }
+  .designer .controls p {
+    margin: 0 0 14px;
+    color: var(--ink-2);
+    font-size: 12px;
+  }
+  .sliders {
+    margin: 8px 0 18px;
+    padding: 16px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .sliders.font-options {
+    margin: -10px 0 18px;
+    padding: 14px 14px;
+    border: 1.5px solid var(--red);
+    background: rgba(184,35,30,0.04);
+    position: relative;
+  }
+  .sliders.font-options::before {
+    content: 'Font options';
+    position: absolute;
+    top: -8px;
+    left: 14px;
+    padding: 0 8px;
+    background: var(--paper);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--red);
+    font-weight: 500;
+  }
+  .sliders.font-options .slider-row label { color: var(--red); }
+  .sliders.font-options .slider-row .val { color: var(--ink); }
+  .slider-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 48px;
+    align-items: center;
+    gap: 14px;
+  }
+  .slider-row label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-2);
+  }
+  .slider-row .val {
+    font-variant-numeric: tabular-nums;
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: right;
+  }
+  .slider-row input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 16px;
+    background: transparent;
+    cursor: ew-resize;
+    margin: 0;
+    padding: 0;
+  }
+  .slider-row input[type=range]:focus { outline: none; }
+  .slider-row input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--ink);
+    border-radius: 0;
+  }
+  .slider-row input[type=range]::-moz-range-track {
+    height: 2px;
+    background: var(--ink);
+    border-radius: 0;
+    border: none;
+  }
+  .slider-row input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 16px;
+    background: var(--red);
+    border: none;
+    border-radius: 0;
+    margin-top: -7px;
+    cursor: ew-resize;
+  }
+  .slider-row input[type=range]::-moz-range-thumb {
+    width: 10px;
+    height: 16px;
+    background: var(--red);
+    border: none;
+    border-radius: 0;
+    cursor: ew-resize;
+  }
+  /* Inverted accents for the font-options group — these live *after*
+     the base .slider-row rules so they win on equal specificity. */
+  .sliders.font-options .slider-row input[type=range]::-webkit-slider-runnable-track { background: var(--red); }
+  .sliders.font-options .slider-row input[type=range]::-moz-range-track { background: var(--red); }
+  .sliders.font-options .slider-row input[type=range]::-webkit-slider-thumb { background: var(--ink); }
+  .sliders.font-options .slider-row input[type=range]::-moz-range-thumb { background: var(--ink); }
+  .sliders .note-line {
+    font-size: 10px;
+    color: var(--ink-2);
+    font-style: italic;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px dotted rgba(26,24,20,0.2);
+  }
+  .designer .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .designer button {
+    font-family: inherit;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  .designer button:hover { background: var(--ink); color: var(--paper); }
+  .designer .activelist {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .designer .activelist b { color: var(--red); }
+  @media (max-width: 880px) {
+    .designer { grid-template-columns: 1fr; }
+  }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 18px;
+    border-top: 6px solid var(--rule);
+    font-size: 10px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <header class="head">
+    <h1>One Hundred<br>and Forty<em>.</em></h1>
+    <div class="meta">
+      Specimen №&nbsp;02 · 2026<br>
+      Type from a 3×7 dot matrix<br>
+      <span class="stamp">140 segments · unencoded</span>
+    </div>
+  </header>
+
+  <section class="note">
+    <div class="label">On the<br>problem</div>
+    <div>
+      <p>Twenty-one dots arranged 3 across by 7 down. Of the <span class="figure">C(21,2) = 210</span> straight lines between pairs, seventy are degenerate — they pass through another dot along the way — leaving <span class="figure">140</span> distinct, indivisible segments to work with.</p>
+      <p>The abstract possibility space is <span class="figure">2¹⁴⁰ ≈ 1.4 × 10⁴²</span> on/off combinations — an unimaginable expansion of the 2×4 grid's four million. What concerns us is still the small subset that resolves into <em>readable English</em>: 26 capitals, 26 lowercase, 10 digits, and the workaday punctuation.</p>
+      <p>This specimen ships <em>unencoded</em>. The wider grid relieves the 2×4's worst collisions (B/D, V/X, I/l) and opens up middle-column strokes, but the design choices are now yours to make. Click any cell to open the editor and start setting segments.</p>
+    </div>
+  </section>
+
+  <!-- ═══ §01 the key ════════════════════════════════════ -->
+  <div class="sec">
+    <div class="n">§01</div>
+    <h2>The segment palette</h2>
+    <div class="count">140 segments · 21 dots</div>
+  </div>
+  <div class="key-groups" id="keyGroups"></div>
+
+  <!-- ═══ §02 capitals ═══════════════════════════════════ -->
+  <div class="sec">
+    <div class="n">§02</div>
+    <h2>Capitals</h2>
+    <div class="count">A — Z</div>
+  </div>
+  <div class="grid" id="upperGrid"></div>
+
+  <!-- ═══ §03 minuscules ═════════════════════════════════ -->
+  <div class="sec">
+    <div class="n">§03</div>
+    <h2>Minuscules</h2>
+    <div class="count">a — z</div>
+  </div>
+  <div class="grid" id="lowerGrid"></div>
+
+  <!-- ═══ §04 digits ═════════════════════════════════════ -->
+  <div class="sec">
+    <div class="n">§04</div>
+    <h2>Numerals</h2>
+    <div class="count">0 — 9</div>
+  </div>
+  <div class="grid" id="digitGrid"></div>
+
+  <!-- ═══ §05 punctuation ════════════════════════════════ -->
+  <div class="sec">
+    <div class="n">§05</div>
+    <h2>Punctuation &amp; signs</h2>
+    <div class="count">common marks</div>
+  </div>
+  <div class="grid" id="punctGrid"></div>
+
+  <!-- ═══ §06 type-a-line stage ══════════════════════════ -->
+  <div class="sec">
+    <div class="n">§06</div>
+    <h2>Type a line</h2>
+    <div class="count">interactive</div>
+  </div>
+  <div class="designer">
+    <div class="stage" id="designerStage" tabindex="0"></div>
+    <div class="controls">
+      <h3>Type, then sculpt.</h3>
+      <p>Click the stage and start typing. Every character is composed from the encoded segments and rendered with the geometry sliders below — move them while you have text on the page to watch the line reflow live.</p>
+
+      <div class="sliders" id="slidersContainer"></div>
+      <div class="sliders font-options" id="slidersContainerOpts"></div>
+
+      <div class="buttons">
+        <button id="clearBtn">Clear text</button>
+        <button id="sampleBtn">Sample text</button>
+        <button id="resetGeomBtn">Reset geometry</button>
+      </div>
+      <div class="activelist">
+        Characters: <b id="charCount">0</b>
+        &nbsp;·&nbsp; Lines: <b id="lineCount">1</b>
+        <span id="rawText" class="raw-preview"></span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>140-segment specimen</span>
+    <span>Generated 2026 · One file, no dependencies beyond Google Fonts</span>
+  </footer>
+
+</div>
+
+<div class="editor" id="editor" role="dialog" aria-label="Glyph editor">
+  <div class="editor-head">
+    <span class="ch-big" id="editorCh">A</span>
+    <div class="editor-label-wrap">
+      <div class="editor-label">Editing glyph</div>
+      <div class="editor-name" id="editorName">—</div>
+    </div>
+    <button class="close-btn" id="editorClose" title="Close" aria-label="Close editor">×</button>
+  </div>
+  <div class="editor-body">
+    <div class="editor-stage" id="editorStage"></div>
+    <div class="editor-meta">
+      <div class="meta-row">
+        <span class="meta-label">Active</span>
+        <span class="meta-val" id="editorSegs">—</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Default</span>
+        <span class="meta-val muted" id="editorDefault">—</span>
+      </div>
+      <div class="editor-actions">
+        <button id="editorReset" title="Restore the original encoding">Reset</button>
+        <button id="editorClear" title="Remove all segments">Clear</button>
+      </div>
+    </div>
+  </div>
+  <div class="editor-hint">Click two dots to toggle the segment between them. Click the same dot again to cancel. Edits save to your browser and update §06 live.</div>
+</div>
+
+<script>
+/* ──────────────────────────────────────────────────────────
+   GEOMETRY
+   ────────────────────────────────────────────────────────── */
+
+// Dot grid: 3 columns (x ∈ {0,1,2}), 7 rows (y ∈ {0..6}).
+const COLS = 3;
+const ROWS = 7;
+const DOTS = [];
+for (let r = 0; r < ROWS; r++) {
+  for (let c = 0; c < COLS; c++) {
+    DOTS.push([c, r]);
+  }
+}
+
+// The non-degenerate segments — every dot pair whose displacement
+// has gcd(|dx|,|dy|) = 1, i.e. no third grid point sits between them.
+// Order is deterministic (sweep i<j by index) so segment indices are
+// stable across reloads and editor sessions.
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+const SEGMENTS = [];
+for (let i = 0; i < DOTS.length; i++) {
+  for (let j = i + 1; j < DOTS.length; j++) {
+    const dx = Math.abs(DOTS[j][0] - DOTS[i][0]);
+    const dy = Math.abs(DOTS[j][1] - DOTS[i][1]);
+    if (gcd(dx, dy) === 1) SEGMENTS.push([i, j]);
+  }
+}
+// Sanity: 3×7 grid → 140 non-degenerate segments.
+
+// Direction signature (|dx|,|dy|) for each segment — used for stroke
+// width assignment, key palette grouping, and labels.
+const SEG_SIG = SEGMENTS.map(([a, b]) => [
+  Math.abs(DOTS[b][0] - DOTS[a][0]),
+  Math.abs(DOTS[b][1] - DOTS[a][1]),
+]);
+
+const SEG_DESCRIPTIONS = SEG_SIG.map(([dx, dy], i) => {
+  if (dy === 0) return `horiz ${dx}`;
+  if (dx === 0) return `vert ${dy}`;
+  return `${dx}×${dy} diag`;
+});
+
+/* ──────────────────────────────────────────────────────────
+   GLYPH ENCODINGS
+   Each character → set of active segment indices.
+
+   Authoring format (GLYPHS_RAW): each glyph is a list of
+   dot-pair labels like "BM" (alphabetical, A..U row-major:
+   A B C / D E F / G H I / J K L / M N O / P Q R / S T U).
+   Pairs are translated to segment indices at load time.
+   Edits via the editor persist to localStorage and override
+   these defaults until "Reset" is clicked.
+   ────────────────────────────────────────────────────────── */
+
+const ALL_CHARS = [
+  ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  ...'abcdefghijklmnopqrstuvwxyz',
+  ...'0123456789',
+  ' ',
+  '.', ',', ':', ';', '!', '?', "'", '"', '`', '-', '_', '=', '+', '*',
+  '/', '\\', '(', ')', '[', ']', '{', '}', '<', '>',
+  '@', '#', '$', '%', '|', '~', '^',
+];
+
+const GLYPHS_RAW = {
+  "A": ["BM","BO","JK","KL"],
+  "B": ["AB","AD","BC","CF","DG","FI","GH","GJ","HI","IL","JM","LO","MN","NO"],
+  "C": ["AB","AD","BC","DG","GJ","JM","MN","NO"],
+  "D": ["AB","AD","BC","CF","DG","FI","GJ","IL","JM","LO","MN","NO"],
+  "E": ["AB","AD","BC","DG","GH","GJ","HI","JM","MN","NO"],
+  "F": ["AB","AD","BC","DG","GH","GJ","HI","JM"],
+  "G": ["AB","AD","BC","DG","GJ","JM","KL","LO","MN","NO"],
+  "H": ["AD","CF","DG","FI","GH","GJ","HI","IL","JM","LO"],
+  "I": ["AB","BC","BE","EH","HK","KN","MN","NO"],
+  "J": ["AB","BC","BE","EH","HK","JM","KN","MN"],
+  "K": ["AD","CF","DG","FG","GJ","GL","JM","LO"],
+  "L": ["AD","DG","GJ","JM","MN","NO"],
+  "M": ["AD","AH","CF","CH","DG","FI","GJ","IL","JM","LO"],
+  "N": ["AD","AL","CF","DG","FI","GJ","IL","JM","LO"],
+  "O": ["AB","AD","BC","CF","DG","FI","GJ","IL","JM","LO","MN","NO"],
+  "P": ["AB","AD","BC","CF","DG","FI","GH","GJ","HI","JM"],
+  "Q": ["AB","AD","BC","CF","DG","FI","GJ","IL","JM","LO","MN","NO","OT"],
+  "R": ["AB","AD","BC","CF","DG","FI","GH","GJ","HI","HO","JM"],
+  "S": ["AB","AD","BC","DG","GH","HI","IL","LO","MN","NO"],
+  "T": ["AB","BC","BE","EH","HK","KN"],
+  "U": ["AD","CF","DG","FI","GJ","IL","JM","LO","MN","NO"],
+  "V": ["AN","CN"],
+  "W": ["AD","CF","DG","FI","GJ","IL","JM","KM","KO","LO"],
+  "X": ["AK","CK","KM","KO"],
+  "Y": ["AK","CK","KN"],
+  "Z": ["AB","BC","CK","KM","MN","NO"],
+
+  "a": ["GH","GJ","HI","IL","JK","JM","KL","LO","MN","NO"],
+  "b": ["AD","DG","GH","GJ","HI","IL","JM","LO","MN","NO"],
+  "c": ["GH","GJ","HI","JM","MN","NO"],
+  "d": ["CF","FI","GH","GJ","HI","IL","JM","LO","MN","NO"],
+  "e": ["GH","GJ","HI","IL","JK","JM","KL","MN"],
+  "f": ["AB","BC","BE","EH","GH","HI","HK","KN"],
+  "g": ["GH","GJ","HI","IL","JM","LO","MN","NO","OT"],
+  "h": ["AD","DG","GH","GJ","HI","IL","JM","LO"],
+  "i": ["BE","HK","KN"],
+  "j": ["BE","HK","KN","NQ","QS","ST"],
+  "k": ["AD","DG","GJ","IJ","JM","JO"],
+  "l": ["AD","DG","GJ","JM"],
+  "m": ["GH","GJ","HI","HK","IL","JM","KN","LO"],
+  "n": ["GH","GJ","HI","IL","JM","LO"],
+  "o": ["GH","GJ","HI","IL","JM","LO","MN","NO"],
+  "p": ["GH","GJ","HI","IL","JM","LO","MN","MP","NO","PS"],
+  "q": ["GH","GJ","HI","IL","JM","LO","MN","NO","OR","RU"],
+  "r": ["GH","GJ","HI","JM"],
+  "s": ["GH","GJ","HI","JK","KL","LO","MN","NO"],
+  "t": ["BE","EH","GH","HI","HK","KN"],
+  "u": ["GJ","IL","JM","LO","MN","NO"],
+  "v": ["GN","IN"],
+  "w": ["GJ","IL","JM","KM","KO","LO"],
+  "x": ["GK","IK","KM","KO"],
+  "y": ["GK","IK","KN","NQ","QT"],
+  "z": ["GH","HI","IK","KM","MN","NO"],
+
+  "0": ["AB","AD","BC","CF","DG","FI","GJ","IL","JM","LO","MN","NO"],
+  "1": ["AE","EH","HK","KN","MN","NO"],
+  "2": ["AB","BC","CF","FI","IL","JK","JM","KL","MN","NO"],
+  "3": ["AB","BC","CF","FI","IL","JK","KL","LO","MN","NO"],
+  "4": ["AK","CF","FI","IL","JK","KL","LO"],
+  "5": ["AB","AD","BC","DG","GJ","JK","KL","LO","MN","NO"],
+  "6": ["AB","AD","BC","DG","GJ","JK","JM","KL","LO","MN","NO"],
+  "7": ["AB","BC","CN"],
+  "8": ["AB","AD","BC","CF","DG","FI","GH","GJ","HI","IL","JM","LO","MN","NO"],
+  "9": ["AB","AD","BC","CF","DG","FI","GH","GJ","HI","IL","LO","MN","NO"],
+
+  " ":  [],
+  ".":  ["MN"],
+  ",":  ["NQ"],
+  ":":  ["HK","MN"],
+  ";":  ["HK","NQ"],
+  "!":  ["BE","EH","HK","NQ"],
+  "?":  ["AB","BC","CF","FI","IK","KN","NQ"],
+  "'":  ["BE"],
+  "\"": ["AD","CF"],
+  "-":  ["JK","KL"],
+  "_":  ["MN","NO"],
+  "=":  ["GH","HI","MN","NO"],
+  "+":  ["EH","GH","HI","HK"],
+  "*":  ["DH","EH","FH","GH","HI","HJ","HK","HL"],
+  "/":  ["CK","KM"],
+  "\\": ["AK","KO"],
+  "(":  ["BD","DG","GJ","JM","MN"],
+  ")":  ["BF","FI","IL","LO","NO"],
+  "[":  ["AB","AD","DG","GJ","JM","MN"],
+  "]":  ["BC","CF","FI","IL","LO","NO"],
+};
+
+// Translate a dot-pair label ("BM") to its segment index in SEGMENTS.
+// Dot labels are row-major A..U so 'A'.charCodeAt - 65 gives the
+// index into DOTS. SEGMENTS is built i<j, so we sort the pair.
+const PAIR_TO_SEG = new Map();
+SEGMENTS.forEach(([a, b], i) => { PAIR_TO_SEG.set(a + '-' + b, i); });
+function pairToSegIdx(pair) {
+  let a = pair.charCodeAt(0) - 65;
+  let b = pair.charCodeAt(1) - 65;
+  if (a > b) [a, b] = [b, a];
+  return PAIR_TO_SEG.get(a + '-' + b);
+}
+
+const GLYPHS = {};
+ALL_CHARS.forEach(ch => { GLYPHS[ch] = []; });
+for (const [ch, pairs] of Object.entries(GLYPHS_RAW)) {
+  if (!Object.prototype.hasOwnProperty.call(GLYPHS, ch)) GLYPHS[ch] = [];
+  const idxs = [];
+  for (const p of pairs) {
+    const i = pairToSegIdx(p);
+    if (i !== undefined) idxs.push(i);
+    else console.warn(`glyph "${ch}": illegal dot pair "${p}" (no segment with gcd=1)`);
+  }
+  GLYPHS[ch] = idxs;
+}
+
+const NAMES = {
+  '.': 'period', ',': 'comma', ':': 'colon', ';': 'semicolon',
+  '!': 'excl', '?': 'qstn', "'": 'apos', '"': 'quote',
+  '`': 'btick', '-': 'hyphen', '_': 'under', '=': 'equals',
+  '+': 'plus', '*': 'aster', '/': 'slash', '\\': 'bslash',
+  '(': 'lparen', ')': 'rparen', '[': 'lbrkt', ']': 'rbrkt',
+  '{': 'lbrace', '}': 'rbrace', '<': 'lt', '>': 'gt',
+  '@': 'at', '#': 'hash', '$': 'dollar', '%': 'pct',
+  '|': 'pipe', '~': 'tilde', '^': 'caret',
+};
+
+/* ──────────────────────────────────────────────────────────
+   MUTABLE STATE: edits to the encoding live here.
+   DEFAULT_GLYPHS is the immutable snapshot we restore from
+   when "Reset" is clicked. GLYPHS is mutated in place by the
+   editor and persisted to localStorage on every change.
+   ────────────────────────────────────────────────────────── */
+
+const DEFAULT_GLYPHS = {};
+Object.entries(GLYPHS).forEach(([ch, arr]) => { DEFAULT_GLYPHS[ch] = [...arr]; });
+
+const STORAGE_KEY = 'glyph-3x7/v1';
+const SEG_MAX = SEGMENTS.length - 1;
+function persistGlyphs() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(GLYPHS)); }
+  catch (e) { /* file:// or private mode — silently ignore */ }
+}
+function hydrateGlyphs() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return;
+    for (const [ch, arr] of Object.entries(parsed)) {
+      if (Array.isArray(arr) && arr.every(n => Number.isInteger(n) && n >= 0 && n <= SEG_MAX)) {
+        GLYPHS[ch] = arr;
+      }
+    }
+  } catch (e) { /* corrupted JSON — start fresh */ }
+}
+hydrateGlyphs();
+
+// character → cell DOM element, populated as we build the specimen grids
+const cellByChar = new Map();
+
+/* ──────────────────────────────────────────────────────────
+   LINE-END (cap) STYLES
+
+   Four discrete options, exposed in §06 as a snap-to-stop
+   slider. SVG natively supports two (round/butt); the other
+   two need polygon geometry.
+   ────────────────────────────────────────────────────────── */
+
+const LINE_END_STOPS = ['bullet', 'blunt', 'angled', 'pointed'];
+
+// Cap polygon vertices in stroke coords. Returns null for
+// line-friendly caps (bullet, blunt) so callers know to use
+// a <line>; returns a vertex array for angled/pointed.
+//
+// `horizDir` is the unit vector for the glyph's horizontal direction
+// — only used by 'angled'. The cap line passes through the stroke
+// endpoint in direction `horizDir`, so under tilt a vertical stroke
+// gets a chisel tip aligned with the tilted horizontals. Defaults
+// to screen-horizontal (1, 0) for the specimen / editor / key, which
+// render the un-tilted canonical glyph.
+function capPolygonPoints(ax, ay, bx, by, width, linecap, horizDir) {
+  const dx = bx - ax, dy = by - ay;
+  const L  = Math.hypot(dx, dy);
+  if (L < 1e-6) return null;
+  const ux = dx / L, uy = dy / L;        // unit along stroke
+  const px = -uy,    py = ux;            // unit perpendicular (90° CCW)
+  const hw = width / 2;
+
+  if (linecap === 'pointed') {
+    // Hexagonal taper to a point at each endpoint. Taper length
+    // is the smaller of half-width and a third of stroke length,
+    // so the polygon stays convex on short segments.
+    const t = Math.min(hw, L / 3);
+    const m1x = ax + ux * t, m1y = ay + uy * t;
+    const m2x = bx - ux * t, m2y = by - uy * t;
+    return [
+      [ax, ay],
+      [m1x + px * hw, m1y + py * hw],
+      [m2x + px * hw, m2y + py * hw],
+      [bx, by],
+      [m2x - px * hw, m2y - py * hw],
+      [m1x - px * hw, m1y - py * hw],
+    ];
+  }
+
+  if (linecap === 'angled') {
+    // Cut each end along a line in direction h, but offset along d
+    // so the resulting cap's "inner" corner lies on a stroke edge at
+    // the endpoint's d-level (flush at the corner), with the other
+    // edge extending past the endpoint by 2|ext| (the stroke is
+    // lengthened on that side). The cap line itself remains parallel
+    // to h.
+    const hx = horizDir ? horizDir[0] : 1;
+    const hy = horizDir ? horizDir[1] : 0;
+    const dh = ux * hx + uy * hy;          // d·h  (cos of angle d↔h)
+    const ch = hx * uy - hy * ux;          // h×d  (sin of angle h↔d)
+
+    // Stroke parallel to cap direction → cap can't trim the stroke;
+    // fall back to a butt rectangle (perpendicular ends, no extension).
+    if (Math.abs(ch) < 1e-6) {
+      return [
+        [ax + px * hw, ay + py * hw],
+        [bx + px * hw, by + py * hw],
+        [bx - px * hw, by - py * hw],
+        [ax - px * hw, ay - py * hw],
+      ];
+    }
+
+    const ext  = hw * dh / ch;
+    const aext = Math.abs(ext);
+    // Math.sign(0) === 0 would collapse all vertices onto the
+    // centerline at exact zero tilt. Either sign produces the same
+    // butt rectangle when ext === 0, so we pick +1 in that case.
+    const s    = Math.sign(ext) || 1;
+
+    // CCW traversal: A_inner → B_outer → B_inner → A_outer. The naïve
+    // [A_inner, A_outer, B_outer, B_inner] would self-intersect (both
+    // caps share the same σ side); this order walks one full stroke
+    // edge, the B-cap, the other full edge, then the A-cap.
+    return [
+      [ax              - s * hw * px,
+       ay              - s * hw * py],                          // A inner — flush at A on one edge
+      [bx + 2 * aext * ux - s * hw * px,
+       by + 2 * aext * uy - s * hw * py],                       // B outer — extended past B, other edge
+      [bx              + s * hw * px,
+       by              + s * hw * py],                          // B inner — flush at B
+      [ax - 2 * aext * ux + s * hw * px,
+       ay - 2 * aext * uy + s * hw * py],                       // A outer — extended past A
+    ];
+  }
+
+  return null;
+}
+
+// Append a single drawn segment to `parent`. For bullet/blunt
+// caps this creates a <line> with stroke-linecap=round/butt; for
+// angled/pointed it creates a <polygon> with the cap geometry baked
+// into the vertices. All visual attributes are set inline.
+function drawSegment(parent, ax, ay, bx, by, opts) {
+  const lc = opts.linecap || 'blunt';
+  const color = opts.color || '#1a1814';
+  const w = opts.width ?? 3;
+  const wiggle = opts.wiggle ?? 0;
+  const tA = opts.tangentA || null;
+  const tB = opts.tangentB || null;
+  const startTrim = opts.startTrim ?? 0;
+  const endTrim   = opts.endTrim   ?? 0;
+  // When a fillet is attached at an endpoint we want a butt cap there
+  // regardless of the global lineEnd style — caps would peek out past
+  // the fillet otherwise.
+  const lcA = startTrim > 0 ? 'blunt' : lc;
+  const lcB = endTrim   > 0 ? 'blunt' : lc;
+
+  // Apply trims along the original segment axis.
+  let pax = ax, pay = ay, pbx = bx, pby = by;
+  if (startTrim > 0 || endTrim > 0) {
+    const dxs = bx - ax, dys = by - ay;
+    const Ls  = Math.hypot(dxs, dys);
+    if (Ls > 1e-6) {
+      const uxs = dxs / Ls, uys = dys / Ls;
+      pax = ax + uxs * startTrim;
+      pay = ay + uys * startTrim;
+      pbx = bx - uxs * endTrim;
+      pby = by - uys * endTrim;
+    }
+  }
+  // Degenerate (fully eaten): the fillet covers this whole segment.
+  if ((pbx - pax) ** 2 + (pby - pay) ** 2 < 1e-4) return null;
+
+  // At a trimmed endpoint the dot's tangent no longer applies — that
+  // endpoint is now a mid-segment point owned by the fillet that
+  // follows. Skip wiggle there so the path joins the fillet cleanly.
+  const effA = startTrim > 0 ? null : tA;
+  const effB = endTrim   > 0 ? null : tB;
+  const useBezier = wiggle > 0 && (effA || effB);
+
+  if (useBezier) {
+    function ctrl(px, py, qx, qy, tan) {
+      if (!tan) return [px, py];
+      const dx = qx - px, dy = qy - py;
+      const L = Math.hypot(dx, dy);
+      if (L < 1e-6) return [px, py];
+      const dot = tan[0] * dx + tan[1] * dy;
+      const sign = dot >= 0 ? 1 : -1;
+      const mag = wiggle * L / 3;
+      return [px + sign * tan[0] * mag, py + sign * tan[1] * mag];
+    }
+    const [c1x, c1y] = ctrl(pax, pay, pbx, pby, effA);
+    const [c2x, c2y] = ctrl(pbx, pby, pax, pay, effB);
+
+    // Bezier paths only support one linecap — if the two ends disagree
+    // because one side is filleted, take the un-filleted side's cap.
+    const dominantLc = lcA === 'blunt' ? lcB : lcA;
+    let svgCap = 'butt';
+    if (dominantLc === 'bullet' || dominantLc === 'pointed') svgCap = 'round';
+
+    const path = document.createElementNS(SVG_NS, 'path');
+    path.setAttribute('d',
+      `M ${pax.toFixed(2)} ${pay.toFixed(2)} ` +
+      `C ${c1x.toFixed(2)} ${c1y.toFixed(2)} ` +
+        `${c2x.toFixed(2)} ${c2y.toFixed(2)} ` +
+        `${pbx.toFixed(2)} ${pby.toFixed(2)}`);
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', w);
+    path.setAttribute('stroke-linecap', svgCap);
+    path.setAttribute('fill', 'none');
+    if (opts.dataSeg !== undefined) path.dataset.seg = opts.dataSeg;
+    parent.appendChild(path);
+    return path;
+  }
+
+  // Caps disagree across the two ends when one side is filleted; only
+  // the un-filleted side gets the styled cap. The line element gets
+  // one stroke-linecap — for mixed ends we pick the non-blunt side.
+  const lineLc = (lcA === 'blunt' && lcB === 'blunt') ? 'blunt' :
+                 (lcA !== 'blunt' ? lcA : lcB);
+
+  if (lineLc === 'bullet' || lineLc === 'blunt') {
+    const line = document.createElementNS(SVG_NS, 'line');
+    line.setAttribute('x1', pax);
+    line.setAttribute('y1', pay);
+    line.setAttribute('x2', pbx);
+    line.setAttribute('y2', pby);
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', w);
+    line.setAttribute('stroke-linecap', lineLc === 'bullet' ? 'round' : 'butt');
+    line.setAttribute('fill', 'none');
+    if (opts.dataSeg !== undefined) line.dataset.seg = opts.dataSeg;
+    parent.appendChild(line);
+    return line;
+  }
+
+  const pts = capPolygonPoints(pax, pay, pbx, pby, w, lineLc, opts.horizDir);
+  if (!pts) return null;
+  const poly = document.createElementNS(SVG_NS, 'polygon');
+  poly.setAttribute(
+    'points',
+    pts.map(p => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ')
+  );
+  poly.setAttribute('fill', color);
+  poly.setAttribute('stroke', 'none');
+  if (opts.dataSeg !== undefined) poly.dataset.seg = opts.dataSeg;
+  parent.appendChild(poly);
+  return poly;
+}
+
+// Emit a fillet bezier: a cubic from p1 to p2 with control points
+// c1 (out of p1) and c2 (into p2). Used by the centreline-width
+// preview renderers (specimen/key/editor); the §06 stage routes
+// fillets through flattenAndChisel instead.
+function drawFillet(parent, p1, p2, c1, c2, opts) {
+  const color = opts.color || '#1a1814';
+  const w = opts.width ?? 3;
+  const path = document.createElementNS(SVG_NS, 'path');
+  path.setAttribute('d',
+    `M ${p1[0].toFixed(2)} ${p1[1].toFixed(2)} ` +
+    `C ${c1[0].toFixed(2)} ${c1[1].toFixed(2)} ` +
+      `${c2[0].toFixed(2)} ${c2[1].toFixed(2)} ` +
+      `${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`);
+  path.setAttribute('stroke', color);
+  path.setAttribute('stroke-width', w);
+  path.setAttribute('stroke-linecap', 'butt');
+  path.setAttribute('fill', 'none');
+  parent.appendChild(path);
+  return path;
+}
+
+// Convex hull (Andrew's monotone chain) — for ≤8 points, trivial. We
+// strip collinear vertices with `cross <= 0`, so the swept rectangle
+// (degenerate "hexagon" with two pairs of collinear points) comes back
+// as a clean 4-vertex polygon.
+function convexHull(pts) {
+  const sorted = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  if (sorted.length <= 1) return sorted;
+  const cross = (o, a, b) =>
+    (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lower = [];
+  for (const p of sorted) {
+    while (lower.length >= 2 &&
+           cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) {
+      lower.pop();
+    }
+    lower.push(p);
+  }
+  const upper = [];
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    const p = sorted[i];
+    while (upper.length >= 2 &&
+           cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) {
+      upper.pop();
+    }
+    upper.push(p);
+  }
+  lower.pop();
+  upper.pop();
+  return lower.concat(upper);
+}
+
+// Append a polygon with the given vertices.
+function appendPoly(parent, pts, color, dataSeg) {
+  const poly = document.createElementNS(SVG_NS, 'polygon');
+  poly.setAttribute(
+    'points',
+    pts.map(p => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ')
+  );
+  poly.setAttribute('fill', color);
+  poly.setAttribute('stroke', 'none');
+  if (dataSeg !== undefined) poly.dataset.seg = dataSeg;
+  parent.appendChild(poly);
+  return poly;
+}
+
+// Chisel-pen stroke. The nib is a rectangle (corners centered at origin);
+// each mode reads the rectangle's perpendicular-to-travel projection so
+// thickness still varies with direction the way a real chisel does.
+//
+//   'angled'   — full Minkowski sweep, extension past A/B (rectangle nib
+//                sweep; convex hull of {A + c_i, B + c_i}).
+//   'blunt'    — perpendicular-cut rectangle, no extension past A/B.
+//   'pointed'  — perpendicular thickness tapered to a point at A and B.
+//   'bullet'   — perpendicular thickness with rounded endcaps.
+function drawChiselSegment(parent, ax, ay, bx, by, corners, lineEnd, color, dataSeg) {
+  const dx = bx - ax, dy = by - ay;
+  const L  = Math.hypot(dx, dy);
+
+  if (L < 1e-6) {
+    // Degenerate segment — render the nib itself at A.
+    return appendPoly(parent, corners.map(c => [ax + c[0], ay + c[1]]), color, dataSeg);
+  }
+
+  const ux = dx / L, uy = dy / L;
+  const px = uy, py = -ux;          // visual-CCW perpendicular to travel
+
+  if (lineEnd === 'angled') {
+    const candidates = [];
+    for (const c of corners) {
+      candidates.push([ax + c[0], ay + c[1]]);
+      candidates.push([bx + c[0], by + c[1]]);
+    }
+    return appendPoly(parent, convexHull(candidates), color, dataSeg);
+  }
+
+  // Other modes use the nib's perpendicular projection as the stroke
+  // thickness — the chisel's direction-dependent width comes through,
+  // but the caps are decoupled from the nib's swept geometry.
+  let maxPerp = -Infinity, minPerp = Infinity;
+  for (const c of corners) {
+    const p = c[0] * px + c[1] * py;
+    if (p > maxPerp) maxPerp = p;
+    if (p < minPerp) minPerp = p;
+  }
+
+  if (lineEnd === 'pointed') {
+    const halfWidth = Math.max(Math.abs(maxPerp), Math.abs(minPerp));
+    const t = Math.min(halfWidth, L / 3);
+    const pts = [
+      [ax, ay],
+      [ax + ux * t + px * maxPerp, ay + uy * t + py * maxPerp],
+      [bx - ux * t + px * maxPerp, by - uy * t + py * maxPerp],
+      [bx, by],
+      [bx - ux * t + px * minPerp, by - uy * t + py * minPerp],
+      [ax + ux * t + px * minPerp, ay + uy * t + py * minPerp],
+    ];
+    return appendPoly(parent, pts, color, dataSeg);
+  }
+
+  if (lineEnd === 'bullet') {
+    const line = document.createElementNS(SVG_NS, 'line');
+    line.setAttribute('x1', ax);
+    line.setAttribute('y1', ay);
+    line.setAttribute('x2', bx);
+    line.setAttribute('y2', by);
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', maxPerp - minPerp);
+    line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('fill', 'none');
+    if (dataSeg !== undefined) line.dataset.seg = dataSeg;
+    parent.appendChild(line);
+    return line;
+  }
+
+  // 'blunt' (and the default fallback) — perpendicular-cut rectangle.
+  const pts = [
+    [ax + px * maxPerp, ay + py * maxPerp],
+    [bx + px * maxPerp, by + py * maxPerp],
+    [bx + px * minPerp, by + py * minPerp],
+    [ax + px * minPerp, ay + py * minPerp],
+  ];
+  return appendPoly(parent, pts, color, dataSeg);
+}
+
+/* ──────────────────────────────────────────────────────────
+   PER-CHARACTER KERN
+
+   Each specimen cell carries a kern value, persisted to
+   localStorage, that scales that character's advance in §06.
+   100 = normal, 0 = collapsed, 900 = nine times normal.
+   ────────────────────────────────────────────────────────── */
+
+const KERN = {};
+const KERN_STORAGE_KEY = 'glyph-3x7-kern/v1';
+function persistKern() {
+  try { localStorage.setItem(KERN_STORAGE_KEY, JSON.stringify(KERN)); }
+  catch (e) {}
+}
+function hydrateKern() {
+  try {
+    const raw = localStorage.getItem(KERN_STORAGE_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return;
+    for (const [ch, val] of Object.entries(parsed)) {
+      if (typeof val === 'number' && val >= 0 && val <= 900) KERN[ch] = val;
+    }
+  } catch (e) {}
+}
+hydrateKern();
+
+// Returns the currently-selected line-end name. Used by every
+// renderer so changing the §06 slider cascades everywhere. Reads
+// `params` defensively because that object is declared further
+// down (in the §06 designer block) — before its initialisation
+// we return the default 'blunt'.
+function currentLineEnd() {
+  try {
+    if (typeof params !== 'undefined' && params && typeof params.lineEnd === 'number') {
+      return LINE_END_STOPS[Math.round(params.lineEnd)] || 'blunt';
+    }
+  } catch (e) { /* params is in TDZ during initial render */ }
+  return 'blunt';
+}
+
+// Same TDZ-safe shape as currentLineEnd. Returns 0 before §06's
+// `params` exists, which is the right default — straight segments.
+function currentWiggle() {
+  try {
+    if (typeof params !== 'undefined' && params && typeof params.wiggle === 'number') {
+      return params.wiggle;
+    }
+  } catch (e) { /* params is in TDZ during initial render */ }
+  return 0;
+}
+
+// Corner-fillet axis. Returns trim distance per corner expressed as
+// a fraction of segment length — 0 = sharp polyline, 1 = corners
+// fully eat the segments they touch.
+function currentRounding() {
+  try {
+    if (typeof params !== 'undefined' && params && typeof params.rounding === 'number') {
+      return params.rounding;
+    }
+  } catch (e) { /* params is in TDZ during initial render */ }
+  return 0;
+}
+
+/* ──────────────────────────────────────────────────────────
+   DYNAMIC NIB AXIS
+
+   A discrete-stepped axis that picks one rule for how the chisel
+   nib's angle modulates along each stroke. The bezier tangent (or
+   the straight-chord direction, for un-curved pieces) feeds the rule
+   that returns an effective nib angle for each flattened sub-piece.
+   Only one rule runs at a time. Affects only the §06 chisel-pen
+   stage — the centreline preview renderers (key/specimens/editor)
+   ignore the axis since they don't sweep a nib.
+
+   Stops:
+     off       — single global nib angle (the conceit-pure default).
+     tangent   — nib leans halfway toward each piece's travel direction.
+     curve     — only diagonals rotate; cardinals (h, v) stay locked.
+     endpoint  — angle ramps from -flare to +flare along each stroke,
+                 producing tapered terminals.
+     width     — nib is rotated to meet every piece at 45° to its
+                 direction — evens out visible weight across directions.
+   ────────────────────────────────────────────────────────── */
+
+const NIB_MOD_STOPS = ['off', 'tangent', 'curve', 'endpoint', 'width'];
+
+function currentNibMod() {
+  try {
+    if (typeof params !== 'undefined' && params && typeof params.nibMod === 'number') {
+      return NIB_MOD_STOPS[Math.round(params.nibMod)] || 'off';
+    }
+  } catch (e) { /* params is in TDZ during initial render */ }
+  return 'off';
+}
+
+// Returns the effective nib angle (degrees, visual CCW from horizontal)
+// for a sub-piece travelling in direction (vx, vy) at fractional position
+// `t` along its parent stroke. For uniform modes `t` is ignored; for
+// 'endpoint' it ramps the angle from one cap to the other.
+//
+// All formulas are built from sin(2·delta) and cos(2·delta) (line-space
+// trig), which is 180°-periodic in the stroke direction. That's the
+// right invariance for an undirected rectangle nib — and it dodges the
+// "halfway between two angles" ambiguity that produced the perpendicular
+// flip in the earlier linear formulation.
+function effectiveNibAngle(vx, vy, t, mode, baseAngleDeg) {
+  if (!mode || mode === 'off') return baseAngleDeg;
+  const L = Math.hypot(vx, vy);
+  if (L < 1e-6) return baseAngleDeg;
+  const ux = vx / L, uy = vy / L;
+  const segDeg  = Math.atan2(uy, ux) * 180 / Math.PI;
+  const baseRad = baseAngleDeg * Math.PI / 180;
+  // Stroke direction in line-space (doubled angle). The base direction is
+  // the +x axis here, so the "delta" line-direction relative to base is
+  // just the stroke-line rotated by −2·baseAng.
+  const cb = Math.cos(2 * baseRad);
+  const sb = Math.sin(2 * baseRad);
+  const cs = ux * ux - uy * uy;          // cos(2·segAng)
+  const ss = 2 * ux * uy;                // sin(2·segAng)
+  // (dx, dy) = stroke line in the base-relative frame; |dx,dy| = 1.
+  const dx =  cs * cb + ss * sb;         // cos(2·(segAng − baseAng))
+  const dy =  ss * cb - cs * sb;         // sin(2·(segAng − baseAng))
+
+  if (mode === 'tangent') {
+    // Rotate the nib toward the stroke line by half. Built from
+    // sin(2·delta) so it's smooth everywhere including at perpendicular
+    // (where the linear formula used to flip). Peak rotation 22.5° at
+    // 45° strokes, zero at cardinals — matches the calligraphic intuition
+    // and stays inside [−22.5°, 22.5°] for any stroke direction.
+    return baseAngleDeg + 22.5 * dy;
+  }
+
+  if (mode === 'curve') {
+    // Rotate only when the stroke is far from cardinals. Magnitude scales
+    // with |sin(2·delta)| (= |dy|, 0 at cardinals, 1 at diagonals); sign
+    // matches the stroke's diagonal direction. Continuous everywhere
+    // because both magnitude and the sign carrier vanish at cardinals.
+    return baseAngleDeg + 18 * dy * Math.abs(dy);
+  }
+
+  if (mode === 'endpoint') {
+    // Per-piece ramp from −flare at t=0 to +flare at t=1. Flare
+    // magnitude scales mildly with how diagonal the stroke is (|dy|),
+    // so cardinals get a light lift and diagonals get a stronger one.
+    const flare = 20 + 27 * Math.abs(dy);
+    const ramp  = 2 * (t - 0.5);
+    return baseAngleDeg + ramp * flare;
+  }
+
+  if (mode === 'width') {
+    // Equalise visible weight: nib rotated 45° from stroke direction in
+    // real space → 90° in line-space → multiply (cs, ss) by i (rotate
+    // by +90° in line-space, equivalent to (cs, ss) → (−ss, cs)).
+    // Picking the +90° branch unconditionally makes the choice continuous
+    // in segDeg (no tiebreaker flip).
+    const mid2Deg = Math.atan2(cs, -ss) * 180 / Math.PI;   // 2·midAng
+    return mid2Deg / 2;
+  }
+
+  return baseAngleDeg;
+}
+
+// For each dot used by the active segments, compute a unit tangent
+// vector for the bezier curve to follow at that knot.
+//   1 incident segment  → tangent along that segment (straight line)
+//   2 incident segments → tangent = (N₂ − N₁) normalised
+//                          (Catmull-Rom rule)
+//   ≥3 incident          → null (T/X-junction kept sharp on purpose)
+function computeTangents(active, dotPos) {
+  const neighbors = new Map();
+  for (const segIdx of active) {
+    const [a, b] = SEGMENTS[segIdx];
+    if (!neighbors.has(a)) neighbors.set(a, []);
+    if (!neighbors.has(b)) neighbors.set(b, []);
+    neighbors.get(a).push(b);
+    neighbors.get(b).push(a);
+  }
+  const tangents = new Map();
+  for (const [d, ns] of neighbors) {
+    let tx = 0, ty = 0;
+    if (ns.length === 1) {
+      tx = dotPos[ns[0]][0] - dotPos[d][0];
+      ty = dotPos[ns[0]][1] - dotPos[d][1];
+    } else if (ns.length === 2) {
+      tx = dotPos[ns[1]][0] - dotPos[ns[0]][0];
+      ty = dotPos[ns[1]][1] - dotPos[ns[0]][1];
+    } else {
+      tangents.set(d, null);
+      continue;
+    }
+    const L = Math.hypot(tx, ty);
+    tangents.set(d, L > 1e-6 ? [tx / L, ty / L] : null);
+  }
+  return tangents;
+}
+
+// Corner-fillet planning. For each dot D shared by exactly two
+// active, non-collinear segments (a real corner), plan a fillet that
+// reaches as far as the *chain* — sweeping past any collinear
+// passthrough dots in between — until it hits the next corner or
+// terminus.
+//
+// Returns:
+//   trims:   Map<segIdx, {startTrim, endTrim}> in px
+//   fillets: array of {p1, p2, c1, c2}
+//   eaten:   Set<segIdx> for segments fully consumed by fillets
+function computeFillets(active, dotPos, rounding) {
+  if (rounding <= 0) return { trims: new Map(), fillets: [], eaten: new Set() };
+
+  const inc = new Map();
+  for (const segIdx of active) {
+    const [a, b] = SEGMENTS[segIdx];
+    if (!inc.has(a)) inc.set(a, []);
+    if (!inc.has(b)) inc.set(b, []);
+    inc.get(a).push({ segIdx, other: b });
+    inc.get(b).push({ segIdx, other: a });
+  }
+
+  function segBetween(a, b) {
+    const list = inc.get(a);
+    if (!list) return -1;
+    const found = list.find(x => x.other === b);
+    return found ? found.segIdx : -1;
+  }
+
+  function walkChain(startDot, firstNext) {
+    const trace = [];
+    let cur = startDot;
+    let nxt = firstNext;
+    while (true) {
+      const segIdx = segBetween(cur, nxt);
+      if (segIdx < 0) break;
+      const cx = dotPos[cur][0], cy = dotPos[cur][1];
+      const nx = dotPos[nxt][0], ny = dotPos[nxt][1];
+      const len = Math.hypot(nx - cx, ny - cy);
+      trace.push({ segIdx, fromDot: cur, toDot: nxt, len });
+      if (len < 1e-6) break;
+
+      const list = inc.get(nxt) || [];
+      const dirX = (nx - cx) / len, dirY = (ny - cy) / len;
+      let next2 = null;
+      for (const opt of list) {
+        if (opt.other === cur) continue;
+        const ox = dotPos[opt.other][0] - nx;
+        const oy = dotPos[opt.other][1] - ny;
+        const oL = Math.hypot(ox, oy);
+        if (oL < 1e-6) continue;
+        const cos = (dirX * ox + dirY * oy) / oL;
+        if (cos > 0.999) { next2 = opt; break; }
+      }
+      if (!next2) break;
+      cur = nxt;
+      nxt = next2.other;
+    }
+    return trace;
+  }
+
+  function walkAndTrim(trace, dist) {
+    let remaining = dist;
+    const fullyEaten = [];
+    for (let i = 0; i < trace.length; i++) {
+      const seg = trace[i];
+      if (remaining >= seg.len - 1e-6) {
+        fullyEaten.push(seg.segIdx);
+        remaining -= seg.len;
+        continue;
+      }
+      const t = remaining / seg.len;
+      const fx = dotPos[seg.fromDot][0];
+      const fy = dotPos[seg.fromDot][1];
+      const tx = dotPos[seg.toDot][0];
+      const ty = dotPos[seg.toDot][1];
+      const [sa] = SEGMENTS[seg.segIdx];
+      const fromIsStart = sa === seg.fromDot;
+      return {
+        point: [fx + t * (tx - fx), fy + t * (ty - fy)],
+        fullyEaten,
+        partial: {
+          segIdx: seg.segIdx,
+          isStart: fromIsStart,
+          amount: remaining,
+        },
+      };
+    }
+    const last = trace[trace.length - 1];
+    return { point: [...dotPos[last.toDot]], fullyEaten, partial: null };
+  }
+
+  const trims = new Map();
+  const fillets = [];
+  const eaten = new Set();
+
+  function addTrim(segIdx, isStart, amount) {
+    if (amount <= 0) return;
+    const cur = trims.get(segIdx) || { startTrim: 0, endTrim: 0 };
+    if (isStart) cur.startTrim = Math.max(cur.startTrim, amount);
+    else         cur.endTrim   = Math.max(cur.endTrim,   amount);
+    trims.set(segIdx, cur);
+  }
+
+  for (const [d, list] of inc) {
+    const [dx, dy] = dotPos[d];
+    const dirs = list.map(opt => {
+      const ux = dotPos[opt.other][0] - dx;
+      const uy = dotPos[opt.other][1] - dy;
+      const L = Math.hypot(ux, uy);
+      return { opt, ux, uy, L, vx: L > 1e-6 ? ux / L : 0, vy: L > 1e-6 ? uy / L : 0 };
+    });
+    const endpoints = dirs.filter(a => {
+      for (const b of dirs) {
+        if (b === a) continue;
+        if (a.vx * b.vx + a.vy * b.vy < -0.999) return false;
+      }
+      return true;
+    });
+    if (endpoints.length < 2) continue;
+
+    let best = null, bestCos = Infinity;
+    for (let i = 0; i < endpoints.length; i++) {
+      for (let j = i + 1; j < endpoints.length; j++) {
+        const cos = endpoints[i].vx * endpoints[j].vx +
+                    endpoints[i].vy * endpoints[j].vy;
+        if (cos < bestCos) { bestCos = cos; best = [endpoints[i], endpoints[j]]; }
+      }
+    }
+    if (!best) continue;
+
+    const chain1 = walkChain(d, best[0].opt.other);
+    const chain2 = walkChain(d, best[1].opt.other);
+    const len1 = chain1.reduce((s, x) => s + x.len, 0);
+    const len2 = chain2.reduce((s, x) => s + x.len, 0);
+
+    const t1 = walkAndTrim(chain1, rounding * len1 / 2);
+    const t2 = walkAndTrim(chain2, rounding * len2 / 2);
+
+    t1.fullyEaten.forEach(s => eaten.add(s));
+    t2.fullyEaten.forEach(s => eaten.add(s));
+    if (t1.partial) addTrim(t1.partial.segIdx, t1.partial.isStart, t1.partial.amount);
+    if (t2.partial) addTrim(t2.partial.segIdx, t2.partial.isStart, t2.partial.amount);
+
+    // Kappa-arc fillet: each control point sits along its trim
+    // point's chain direction at distance κ·|p − D|, where
+    // κ = 4(√2−1)/3 ≈ 0.5523. Approximates a quarter-circle fillet.
+    const KAPPA = 4 * (Math.SQRT2 - 1) / 3;
+    function ctrlPoint(p) {
+      const dxP = dx - p[0];
+      const dyP = dy - p[1];
+      const dist = Math.hypot(dxP, dyP);
+      if (dist < 1e-6) return [...p];
+      const mag = dist * KAPPA;
+      return [p[0] + (dxP / dist) * mag, p[1] + (dyP / dist) * mag];
+    }
+    const c1 = ctrlPoint(t1.point);
+    const c2 = ctrlPoint(t2.point);
+
+    fillets.push({ p1: t1.point, p2: t2.point, c1, c2 });
+  }
+  return { trims, fillets, eaten };
+}
+
+// Flatten a cubic bezier into N short segments and chisel-sweep
+// each. Internal joints use 'angled' so neighbouring Minkowski
+// sweeps overlap and hide the seam; the two ends honour the
+// caller's lineEndA/lineEndB choices. If `c1`/`c2` are null/undefined
+// (no curve), short-circuits to a single straight chisel call using
+// `lineEndA` only — UNLESS a `cornersFn` is supplied, in which case
+// the straight chord is still flattened so the dynamic-nib axis can
+// rotate the nib piece-by-piece along it.
+//
+// `cornersFn(vx, vy, t)` — optional. When provided, the nib for each
+// flattened sub-piece is whatever this function returns, in place of
+// the fixed `corners`. `vx, vy` is the sub-piece's travel vector and
+// `t` is the midpoint fraction along the parent stroke.
+function flattenAndChisel(parent, p0, c1, c2, p3, corners, lineEndA, lineEndB, color, dataSeg, N, cornersFn) {
+  const hasCurve = !!(c1 && c2);
+  // Single straight chisel — fast path. Only valid when there's no
+  // per-piece nib rotation to apply.
+  if (!hasCurve && !cornersFn) {
+    return drawChiselSegment(parent, p0[0], p0[1], p3[0], p3[1], corners, lineEndA, color, dataSeg);
+  }
+  if (N === undefined) N = hasCurve ? 24 : 12;
+  // Sample N+1 points along the path. For straight chords (no curve),
+  // this is just linear interpolation between p0 and p3.
+  const pts = new Array(N + 1);
+  for (let i = 0; i <= N; i++) {
+    const t = i / N;
+    if (hasCurve) {
+      const u  = 1 - t;
+      const b0 = u * u * u;
+      const b1 = 3 * u * u * t;
+      const b2 = 3 * u * t * t;
+      const b3 = t * t * t;
+      pts[i] = [
+        b0 * p0[0] + b1 * c1[0] + b2 * c2[0] + b3 * p3[0],
+        b0 * p0[1] + b1 * c1[1] + b2 * c2[1] + b3 * p3[1],
+      ];
+    } else {
+      pts[i] = [
+        p0[0] + t * (p3[0] - p0[0]),
+        p0[1] + t * (p3[1] - p0[1]),
+      ];
+    }
+  }
+  // Chisel each consecutive pair. Internal joints use 'angled' so the
+  // overlapping Minkowski sweeps hide the polyline seam; the two ends
+  // honour the caller's chosen lineEnd modes.
+  let last = null;
+  for (let i = 0; i < N; i++) {
+    const isFirst = i === 0;
+    const isLast  = i === N - 1;
+    const le = isFirst ? lineEndA : isLast ? lineEndB : 'angled';
+    const ax = pts[i][0], ay = pts[i][1];
+    const bx = pts[i + 1][0], by = pts[i + 1][1];
+    const cs = cornersFn ? cornersFn(bx - ax, by - ay, (i + 0.5) / N) : corners;
+    last = drawChiselSegment(parent, ax, ay, bx, by, cs, le, color, dataSeg);
+  }
+  return last;
+}
+
+/* ──────────────────────────────────────────────────────────
+   RENDERING
+   ────────────────────────────────────────────────────────── */
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+// Style presets for makeGlyphSVG — these set inline stroke/fill so
+// the same renderer works for the light specimen, the dark editor,
+// and the slim key palette without each context needing its own
+// CSS rules duplicated across line/polygon variants.
+const SVG_STYLES = {
+  specimen: {
+    onColor: '#1a1814',
+    onWidth: 3.2,
+    offColor: 'rgba(26,24,20,0.09)',
+    offWidth: 1.5,
+    dotColor: 'rgba(26,24,20,0.22)',
+    hitWidth: 14,
+  },
+  editor: {
+    onColor: '#f1ece1',
+    onWidth: 9,
+    offColor: 'rgba(241,236,225,0.20)',
+    offWidth: 2,
+    dotColor: 'rgba(241,236,225,0.45)',
+    hitWidth: 26,
+  },
+  key: {
+    onColor: '#1a1814',
+    onWidth: 2.2,
+    offColor: 'rgba(26,24,20,0.10)',
+    offWidth: 1,
+    dotColor: '#1a1814',
+    hitWidth: 12,
+  },
+};
+
+function makeGlyphSVG(active, opts = {}) {
+  // opts: { showOff, showNumbers, dotRadius, padding, cellW,
+  //         interactive, style, linecap, wiggle, rounding, highlightDot }
+  const showOff      = opts.showOff      ?? true;
+  const showNumbers  = opts.showNumbers  ?? false;
+  const interactive  = opts.interactive  ?? false;
+  const cellW        = opts.cellW        ?? 24;
+  const padding      = opts.padding      ?? 12;
+  const dotR         = opts.dotRadius    ?? 1.6;
+  const style        = SVG_STYLES[opts.style || 'specimen'];
+  const linecap      = opts.linecap || 'blunt';
+  const wiggle       = opts.wiggle ?? 0;
+  const rounding     = opts.rounding ?? 0;
+  const highlightDot = (typeof opts.highlightDot === 'number') ? opts.highlightDot : null;
+
+  const W = cellW * (COLS - 1) + padding * 2;
+  const H = cellW * (ROWS - 1) + padding * 2;
+
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('xmlns', SVG_NS);
+
+  // Coordinates of dot i in this SVG.
+  const dx = i => padding + DOTS[i][0] * cellW;
+  const dy = i => padding + DOTS[i][1] * cellW;
+  const dotPos = DOTS.map((_, i) => [dx(i), dy(i)]);
+  const tangents = computeTangents(active, dotPos);
+  const { trims, fillets, eaten } = computeFillets(active, dotPos, rounding);
+
+  // Inactive (faint) segments — drawn first, beneath active ones.
+  // They stay straight regardless of wiggle/rounding so the backdrop
+  // reads as the underlying grid skeleton.
+  if (showOff) {
+    SEGMENTS.forEach((seg, i) => {
+      if (active.includes(i)) return;
+      const [a, b] = seg;
+      drawSegment(svg, dx(a), dy(a), dx(b), dy(b), {
+        color:   style.offColor,
+        width:   style.offWidth,
+        linecap: linecap,
+      });
+    });
+  }
+
+  // Active segments — drawn on top, with optional bezier wiggle and
+  // corner-fillet trims. Mini specimens use the centreline-width
+  // renderer (drawSegment) so wiggle/rounding read as smooth curves
+  // at thumbnail scale; the chisel-nib sweep is reserved for the §06
+  // stage where the geometry is large enough to read.
+  active.forEach(i => {
+    if (eaten.has(i)) return;
+    const [a, b] = SEGMENTS[i];
+    const tr = trims.get(i) || { startTrim: 0, endTrim: 0 };
+    drawSegment(svg, dx(a), dy(a), dx(b), dy(b), {
+      color:    style.onColor,
+      width:    style.onWidth,
+      linecap:  linecap,
+      wiggle:   wiggle,
+      tangentA: tangents.get(a),
+      tangentB: tangents.get(b),
+      startTrim: tr.startTrim,
+      endTrim:   tr.endTrim,
+    });
+  });
+
+  // Fillet beziers — drawn after segments so they overlay any residual
+  // seam at the trim points. Width = on-segment width.
+  fillets.forEach(f => {
+    drawFillet(svg, f.p1, f.p2, f.c1, f.c2, {
+      color: style.onColor,
+      width: style.onWidth,
+    });
+  });
+
+  // Highlight ring for the currently-selected dot (editor only).
+  if (highlightDot !== null && DOTS[highlightDot]) {
+    const [hx, hy] = DOTS[highlightDot];
+    const ring = document.createElementNS(SVG_NS, 'circle');
+    ring.setAttribute('cx', padding + hx * cellW);
+    ring.setAttribute('cy', padding + hy * cellW);
+    ring.setAttribute('r', dotR * 2.4);
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#ff6b62');
+    ring.setAttribute('stroke-width', 2);
+    svg.appendChild(ring);
+  }
+
+  // Dots.
+  DOTS.forEach(([x, y]) => {
+    const c = document.createElementNS(SVG_NS, 'circle');
+    c.setAttribute('cx', padding + x * cellW);
+    c.setAttribute('cy', padding + y * cellW);
+    c.setAttribute('r', dotR);
+    c.setAttribute('fill', style.dotColor);
+    svg.appendChild(c);
+  });
+
+  // Dot hit-targets for the editor — generous transparent circles
+  // that toggle the segment between two clicks. Sit on top so they
+  // catch clicks over visible segments and dots.
+  if (interactive) {
+    const hitR = Math.max(dotR * 4, cellW * 0.32);
+    DOTS.forEach(([x, y], i) => {
+      const hit = document.createElementNS(SVG_NS, 'circle');
+      hit.setAttribute('cx', padding + x * cellW);
+      hit.setAttribute('cy', padding + y * cellW);
+      hit.setAttribute('r', hitR);
+      hit.setAttribute('fill', 'transparent');
+      hit.style.cursor = 'pointer';
+      hit.dataset.dot = i;
+      svg.appendChild(hit);
+    });
+  }
+
+  // Optional segment numbers (used by the key diagram).
+  if (showNumbers) {
+    SEGMENTS.forEach((seg, i) => {
+      const [a, b] = seg;
+      const mx = padding + ((DOTS[a][0] + DOTS[b][0]) / 2) * cellW;
+      const my = padding + ((DOTS[a][1] + DOTS[b][1]) / 2) * cellW;
+      const t = document.createElementNS(SVG_NS, 'text');
+      t.setAttribute('x', mx);
+      t.setAttribute('y', my + 2);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('class', 'seg-num');
+      t.textContent = i;
+      svg.appendChild(t);
+    });
+  }
+
+  return svg;
+}
+
+/* ──────────────────────────────────────────────────────────
+   BUILD: key — segments grouped by type, each as a mini-diagram
+   ────────────────────────────────────────────────────────── */
+
+const allIdx = Array.from({length: SEGMENTS.length}, (_, i) => i);
+
+// Group segments by their displacement signature (|dx|, |dy|).
+// Order: horizontals, verticals, then diagonals from short to long.
+const KEY_GROUP_DEFS = [
+  { sig: [1, 0], name: 'Horizontals',     desc: 'unit row spans' },
+  { sig: [0, 1], name: 'Verticals',       desc: 'unit column spans' },
+  { sig: [1, 1], name: 'Diagonals · 1×1', desc: 'single-cell diagonals' },
+  { sig: [2, 1], name: 'Diagonals · 2×1', desc: 'shallow, two columns wide' },
+  { sig: [1, 2], name: 'Diagonals · 1×2', desc: 'steep, two rows tall' },
+  { sig: [1, 3], name: 'Diagonals · 1×3', desc: 'three rows tall' },
+  { sig: [2, 3], name: 'Diagonals · 2×3', desc: 'two cols, three rows' },
+  { sig: [1, 4], name: 'Diagonals · 1×4', desc: 'four rows tall' },
+  { sig: [1, 5], name: 'Diagonals · 1×5', desc: 'five rows tall' },
+  { sig: [2, 5], name: 'Diagonals · 2×5', desc: 'two cols, five rows' },
+  { sig: [1, 6], name: 'Diagonals · 1×6', desc: 'corner-to-corner (full height)' },
+];
+
+const KEY_GROUPS = KEY_GROUP_DEFS.map(def => {
+  const indices = [];
+  SEG_SIG.forEach((s, i) => {
+    if (s[0] === def.sig[0] && s[1] === def.sig[1]) indices.push(i);
+  });
+  return {
+    name: def.name,
+    hint: `${indices.length} segments · ${def.desc}`,
+    indices,
+  };
+}).filter(g => g.indices.length > 0);
+
+const keyGroupsEl = document.getElementById('keyGroups');
+function buildKeyGroups() {
+  keyGroupsEl.innerHTML = '';
+  const lc = currentLineEnd();
+  const wg = currentWiggle();
+  const rd = currentRounding();
+  KEY_GROUPS.forEach(group => {
+    const wrap = document.createElement('div');
+    wrap.className = 'key-group';
+
+    const label = document.createElement('div');
+    label.className = 'group-label';
+    label.innerHTML = `<span class="group-name">${group.name}</span>${group.hint}`;
+    wrap.appendChild(label);
+
+    const row = document.createElement('div');
+    row.className = 'key-row';
+    group.indices.forEach(i => {
+      const item = document.createElement('div');
+      item.className = 'key-item';
+      item.appendChild(makeGlyphSVG([i], {
+        cellW: 14, padding: 5, dotRadius: 1.1,
+        style: 'key', linecap: lc, wiggle: wg, rounding: rd,
+      }));
+      const idx = document.createElement('div');
+      idx.className = 'idx';
+      idx.textContent = String(i).padStart(3, '0');
+      item.appendChild(idx);
+      const ep = document.createElement('div');
+      ep.className = 'endpoints';
+      ep.textContent = `${SEGMENTS[i][0]}–${SEGMENTS[i][1]}`;
+      item.appendChild(ep);
+      row.appendChild(item);
+    });
+    wrap.appendChild(row);
+    keyGroupsEl.appendChild(wrap);
+  });
+}
+buildKeyGroups();
+
+/* ──────────────────────────────────────────────────────────
+   BUILD: glyph grids
+   ────────────────────────────────────────────────────────── */
+
+function buildGrid(container, chars) {
+  const lc = currentLineEnd();
+  const wg = currentWiggle();
+  const rd = currentRounding();
+  chars.forEach(ch => {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.dataset.char = ch;
+    const svg = makeGlyphSVG(GLYPHS[ch] || [], {
+      cellW: 18, padding: 6, dotRadius: 1.2,
+      style: 'specimen', linecap: lc, wiggle: wg, rounding: rd,
+    });
+    cell.appendChild(svg);
+
+    const label = document.createElement('div');
+    label.className = 'label';
+    const name = NAMES[ch] || '';
+    label.innerHTML = `<span class="ch">${esc(ch)}</span>${name ? '  ' + name : ''}`;
+    cell.appendChild(label);
+
+    // Per-character kern selector. Click and keyboard input are
+    // stopped so they don't bubble up to the cell-opens-editor handler.
+    const kernWrap = document.createElement('div');
+    kernWrap.className = 'kern';
+    const kernLabel = document.createElement('span');
+    kernLabel.className = 'kern-label';
+    kernLabel.textContent = 'kern';
+    const kernInput = document.createElement('input');
+    kernInput.type  = 'number';
+    kernInput.min   = '0';
+    kernInput.max   = '900';
+    kernInput.step  = '10';
+    kernInput.value = (KERN[ch] ?? 100);
+    kernInput.className = 'kern-input';
+    kernInput.title = '0 collapses, 100 is normal monospace, 900 is 9× normal';
+    kernInput.addEventListener('click',    e => e.stopPropagation());
+    kernInput.addEventListener('mousedown', e => e.stopPropagation());
+    kernInput.addEventListener('keydown',  e => e.stopPropagation());
+    kernInput.addEventListener('input', () => {
+      const raw = kernInput.value;
+      if (raw === '') return;                       // user is mid-edit
+      const v = parseInt(raw, 10);
+      if (!Number.isFinite(v)) return;
+      const clamped = Math.max(0, Math.min(900, v));
+      KERN[ch] = clamped;
+      persistKern();
+      if (typeof renderStage === 'function') renderStage();
+    });
+    kernInput.addEventListener('blur', () => {
+      // Normalise on blur in case the user left an empty / invalid value.
+      const v = parseInt(kernInput.value, 10);
+      const clean = Number.isFinite(v) ? Math.max(0, Math.min(900, v)) : 100;
+      KERN[ch] = clean;
+      kernInput.value = clean;
+      persistKern();
+      if (typeof renderStage === 'function') renderStage();
+    });
+    kernWrap.appendChild(kernLabel);
+    kernWrap.appendChild(kernInput);
+    cell.appendChild(kernWrap);
+
+    cellByChar.set(ch, cell);
+    cell.addEventListener('click', () => openEditor(ch));
+    container.appendChild(cell);
+  });
+}
+
+// Replace just the SVG inside a cell — called after the encoding
+// of a character is edited so the specimen stays in sync.
+function refreshCell(ch) {
+  const cell = cellByChar.get(ch);
+  if (!cell) return;
+  const oldSvg = cell.querySelector('svg');
+  const newSvg = makeGlyphSVG(GLYPHS[ch] || [], {
+    cellW: 18, padding: 6, dotRadius: 1.2,
+    style: 'specimen', linecap: currentLineEnd(),
+    wiggle: currentWiggle(), rounding: currentRounding(),
+  });
+  if (oldSvg) cell.replaceChild(newSvg, oldSvg);
+  else cell.insertBefore(newSvg, cell.firstChild);
+}
+
+function esc(c) {
+  if (c === '<') return '&lt;';
+  if (c === '>') return '&gt;';
+  if (c === '&') return '&amp;';
+  return c;
+}
+
+const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const lower = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const digit = '0123456789'.split('');
+const punct = ['.',',',':',';','!','?',"'",'"','`','-','_','=','+','*','/','\\','(',')','[',']','{','}','<','>','@','#','$','%','|','~','^'];
+
+buildGrid(document.getElementById('upperGrid'), upper);
+buildGrid(document.getElementById('lowerGrid'), lower);
+buildGrid(document.getElementById('digitGrid'), digit);
+buildGrid(document.getElementById('punctGrid'), punct);
+
+document.querySelectorAll('.sec .count').forEach(el => {
+  // leave alone; counts above are fine
+});
+
+/* ──────────────────────────────────────────────────────────
+   GLYPH EDITOR — opens when a specimen cell is clicked.
+   Toggles are written straight to GLYPHS[ch], then synced
+   to the specimen cell, the §06 typed line, and localStorage.
+   ────────────────────────────────────────────────────────── */
+
+const editor        = document.getElementById('editor');
+const editorChEl    = document.getElementById('editorCh');
+const editorNameEl  = document.getElementById('editorName');
+const editorStage   = document.getElementById('editorStage');
+const editorSegsEl  = document.getElementById('editorSegs');
+const editorDefEl   = document.getElementById('editorDefault');
+let editingChar = null;
+let selectedDot = null;   // first dot of an in-progress segment pick
+
+// Lookup table for segment indices keyed by ordered dot pair.
+const SEG_BY_PAIR = new Map();
+SEGMENTS.forEach(([a, b], i) => { SEG_BY_PAIR.set(a + '-' + b, i); });
+function segmentBetween(d1, d2) {
+  const a = Math.min(d1, d2), b = Math.max(d1, d2);
+  const idx = SEG_BY_PAIR.get(a + '-' + b);
+  return idx === undefined ? -1 : idx;
+}
+
+function openEditor(ch) {
+  if (editingChar && editingChar !== ch) {
+    const prev = cellByChar.get(editingChar);
+    if (prev) prev.classList.remove('active');
+  }
+  editingChar = ch;
+  selectedDot = null;
+  const cell = cellByChar.get(ch);
+  if (cell) cell.classList.add('active');
+  renderEditor();
+  editor.classList.add('show');
+}
+
+function renderEditor() {
+  if (!editingChar) return;
+  const ch    = editingChar;
+  const segs  = GLYPHS[ch]         || [];
+  const defs  = DEFAULT_GLYPHS[ch] || [];
+
+  editorChEl.innerHTML  = esc(ch);
+  editorNameEl.textContent = NAMES[ch] || ch;
+  editorSegsEl.textContent = segs.length ? [...segs].sort((a,b) => a - b).join(', ') : '(none)';
+  editorDefEl.textContent  = defs.length ? [...defs].sort((a,b) => a - b).join(', ') : '(none)';
+
+  editorStage.innerHTML = '';
+  const svg = makeGlyphSVG(segs, {
+    cellW: 60, padding: 22, dotRadius: 3.2,
+    interactive: true,
+    style: 'editor',
+    linecap: currentLineEnd(),
+    wiggle: currentWiggle(),
+    rounding: currentRounding(),
+    highlightDot: selectedDot,
+  });
+  editorStage.appendChild(svg);
+
+  svg.querySelectorAll('[data-dot]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const dotIdx = parseInt(el.dataset.dot, 10);
+      if (selectedDot === null) {
+        // First click — mark as start of a pair.
+        selectedDot = dotIdx;
+        renderEditor();
+        return;
+      }
+      if (selectedDot === dotIdx) {
+        // Clicking the same dot cancels the selection.
+        selectedDot = null;
+        renderEditor();
+        return;
+      }
+      const segIdx = segmentBetween(selectedDot, dotIdx);
+      if (segIdx < 0) {
+        // Degenerate pair (another dot lies between them) — treat the
+        // second click as starting a fresh selection on the new dot.
+        selectedDot = dotIdx;
+        renderEditor();
+        return;
+      }
+      // Valid pair → toggle the segment, clear selection.
+      const arr = GLYPHS[ch];
+      const pos = arr.indexOf(segIdx);
+      if (pos >= 0) arr.splice(pos, 1);
+      else arr.push(segIdx);
+      selectedDot = null;
+      persistGlyphs();
+      renderEditor();
+      refreshCell(ch);
+      if (typeof renderStage === 'function') renderStage();
+    });
+  });
+}
+
+function closeEditor() {
+  if (editingChar) {
+    const cell = cellByChar.get(editingChar);
+    if (cell) cell.classList.remove('active');
+  }
+  editingChar = null;
+  selectedDot = null;
+  editor.classList.remove('show');
+}
+
+// Close when clicking outside any cell and outside the editor.
+document.addEventListener('click', e => {
+  if (e.target.closest('.cell') || e.target.closest('.editor')) return;
+  closeEditor();
+});
+
+// Editor buttons.
+document.getElementById('editorClose').addEventListener('click', closeEditor);
+
+document.getElementById('editorReset').addEventListener('click', () => {
+  if (!editingChar) return;
+  GLYPHS[editingChar] = [...(DEFAULT_GLYPHS[editingChar] || [])];
+  selectedDot = null;
+  persistGlyphs();
+  renderEditor();
+  refreshCell(editingChar);
+  if (typeof renderStage === 'function') renderStage();
+});
+
+document.getElementById('editorClear').addEventListener('click', () => {
+  if (!editingChar) return;
+  GLYPHS[editingChar] = [];
+  selectedDot = null;
+  persistGlyphs();
+  renderEditor();
+  refreshCell(editingChar);
+  if (typeof renderStage === 'function') renderStage();
+});
+
+/* ──────────────────────────────────────────────────────────
+   DESIGNER
+
+   The designer renders a custom SVG whose geometry is driven
+   by the sliders below. Strokes are the area swept by a virtual
+   chisel-nib rectangle (hWidth × vWidth, rotated by nibAngle) as
+   its centre travels along each segment — the Minkowski sum of
+   the nib and the segment. The `wiggle` slider lets each segment
+   bow into a Catmull-Rom-style cubic; the `rounding` slider
+   replaces sharp corners with κ-arc fillets that can eat their
+   way along the chain. Curved pieces are flattened to short
+   straight segments and each piece is chisel-swept, so the
+   final glyph is one filled outline-style polygon per stroke
+   (the right shape for a "real font" in future).
+   ────────────────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────
+   TYPE-A-LINE STAGE (§06)
+
+   The stage is a focusable typography surface. A click brings
+   it into focus; keystrokes accumulate into `typedText`. The
+   SVG is rebuilt from scratch on every change, with each
+   character composed from its segment encoding and styled by
+   the current slider values. Geometry sliders rewrite every
+   character live.
+   ────────────────────────────────────────────────────────── */
+
+const designerStage = document.getElementById('designerStage');
+const charCountEl   = document.getElementById('charCount');
+const lineCountEl   = document.getElementById('lineCount');
+const rawTextEl     = document.getElementById('rawText');
+
+let typedText = '';
+let stageFocused = false;
+
+// Sample texts cycled by the "Sample text" button. They exercise
+// uppercase, lowercase, digits, punctuation, multi-line, and a
+// well-worn pangram.
+const SAMPLES = [
+  'Hello, world.',
+  'The quick brown fox\njumps over the lazy dog\n0123456789',
+  'Workers of the world\nunite!',
+  'AaBbCc 12.5%',
+];
+let sampleIdx = 0;
+
+/* — geometry helpers — */
+
+// Nib rectangle corners in screen space — hWidth × vWidth, rotated by
+// `thetaDeg` (visual CCW from horizontal, since screen +y is down), centered
+// at origin. With no argument the angle defaults to params.nibAngle (the
+// fixed global nib); the dynamic-nib axis calls nibCornersAt(...) directly
+// per-piece with a modulated angle.
+function nibCornersAt(thetaDeg) {
+  const theta = thetaDeg * Math.PI / 180;
+  const cos = Math.cos(theta), sin = Math.sin(theta);
+  const hw = params.hWidth / 2;
+  const vw = params.vWidth / 2;
+  return [
+    [ hw * cos + vw * sin, -hw * sin + vw * cos],
+    [-hw * cos + vw * sin,  hw * sin + vw * cos],
+    [-hw * cos - vw * sin,  hw * sin - vw * cos],
+    [ hw * cos - vw * sin, -hw * sin - vw * cos],
+  ];
+}
+function nibCorners() { return nibCornersAt(params.nibAngle); }
+
+function computeDots() {
+  // Dot positioning, in order:
+  //   1. Typographic row positions: ascender region (rows 0→2),
+  //      x-height region (rows 2→4), descender region (rows 4→6).
+  //      The midpoints (rows 1 and 5) sit halfway through their
+  //      regions. Row 3 lerps between baseline and x-height via
+  //      xMidHeight (0 = baseline, 100 = x-height).
+  //   2. Column x: cols 0 and 2 are fixed at 0 and 2·colGap. Col 1
+  //      lerps between them via midBalance (0 = left, 100 = right).
+  //   3. Tilt: shift y by -tan(tilt)·(rightCol.x − col.x). Lever arm
+  //      is real x distance so a re-balanced middle column tilts
+  //      proportionally.
+  //   4. Skew: horizontal shear of x by y·tan(skew), applied after
+  //      tilt so verticals and columns lean consistently.
+  const asc  = params.ascHeight;
+  const xh   = params.xHeight;
+  const desc = params.descHeight;
+  const xMidT = params.xMidHeight / 100;
+  const xMidTiltT = params.xMidTilt / 100;
+  const yXheight  = asc;
+  const yBaseline = asc + xh;
+  const rowY = [
+    0,                              // row 0: ascender / cap top
+    asc / 2,                        // row 1: mid ascender
+    yXheight,                       // row 2: x-height line
+    yBaseline - xh * xMidT,         // row 3: x-mid (baseline ↔ x-height) — flat baseline; tilted per-column below
+    yBaseline,                      // row 4: baseline
+    yBaseline + desc / 2,           // row 5: mid descender
+    yBaseline + desc,               // row 6: descender bottom
+  ];
+  const colX = [
+    0,
+    2 * params.colGap * (params.midBalance / 100),
+    2 * params.colGap,
+  ];
+  const tanSkew = Math.tan(params.skewDeg * Math.PI / 180);
+  const tanTilt = Math.tan(params.wonk * Math.PI / 180);
+  const rightX  = colX[COLS - 1];
+  const dots = [];
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      let x = colX[c];
+      let y = rowY[r];
+      // Row 3 tilt: at t=0 row stays flat at xMidHeight; at t=1 it
+      // pivots to land on baseline at col 0 and x-height at col 2,
+      // with col 1 interpolated by its actual x-position so the row
+      // remains a straight line through all three dots.
+      if (r === 3 && xMidTiltT > 0) {
+        const fracAtCol = rightX === 0 ? xMidT : (x / rightX);
+        const frac = (1 - xMidTiltT) * xMidT + xMidTiltT * fracAtCol;
+        y = yBaseline - xh * frac;
+      }
+      y += -(rightX - colX[c]) * tanTilt;
+      x += y * tanSkew;
+      dots.push([x, y]);
+    }
+  }
+  return dots;
+}
+
+/* — slider specifications — */
+
+const PARAM_SPECS = {
+  colGap:     { min: 12, max: 100, val: 46, step: 1,   unit: 'px', label: 'column gap' },
+  ascHeight:  { min: 12, max: 160, val: 48, step: 1,   unit: 'px', label: 'ascender height' },
+  xHeight:    { min: 12, max: 160, val: 48, step: 1,   unit: 'px', label: 'x-height' },
+  descHeight: { min: 12, max: 160, val: 48, step: 1,   unit: 'px', label: 'descender height' },
+  midBalance: { min: 0,  max: 100, val: 50, step: 1,   unit: '%',  label: 'midline balance' },
+  xMidHeight: { min: 0,  max: 100, val: 50, step: 1,   unit: '%',  label: 'x-mid height' },
+  // Tilts row 3 only. 0 = parallel to baseline/x-height. 100 = row 3
+  // pivots so the left dot lands on the baseline and the right dot on
+  // the x-height. The middle dot interpolates by its x-position along
+  // that line, so it stays consistent with midBalance.
+  xMidTilt:   { min: 0,  max: 100, val: 0,  step: 1,   unit: '%',  label: 'x-mid tilt' },
+  wonk:     { min: -45,max: 45,  val: 0,  step: 0.5, unit: '°',  label: 'wonk (column tilt)' },
+  skewDeg:  { min: -40,max: 40,  val: 0,  step: 0.5, unit: '°',  label: 'skew' },
+  nibAngle: { min: -90,max: 90,  val: 0,  step: 0.5, unit: '°',  label: 'nib angle' },
+  vWidth:   { min: 0.5,max: 32,  val: 6,  step: 0.5, unit: 'px', label: 'nib height (v)' },
+  hWidth:   { min: 0.5,max: 32,  val: 6,  step: 0.5, unit: 'px', label: 'nib width (h)' },
+  // Wiggle: bezier-handle length per skeleton knot, fraction of
+  // chord. 0 = sharp polyline, 1 ≈ chord/3 handles, 1.5 = balloons
+  // past the dots. In the §06 stage each wiggled segment is flattened
+  // to N short straight segments and chiselled, so the result is still
+  // a filled nib polygon.
+  wiggle:   { min: 0,  max: 1.5, val: 0,  step: 0.01, unit: '',   label: 'wiggle',
+              affectsAll: true },
+  // Rounding: cubic-bezier corner fillet at each 2-junction whose
+  // segments aren't collinear. 0 = sharp, 1 = fillets eat each
+  // touching segment in half (square O reads as a circle). Fillets
+  // are flattened-and-chiselled in §06, same as wiggled segments.
+  rounding: { min: 0,  max: 1,   val: 0,  step: 0.01, unit: '',   label: 'rounding',
+              affectsAll: true },
+  // Discrete stops; the slider snaps because step is 1 across an int range.
+  // formatVal recognises `values` and shows the name instead of the index.
+  lineEnd: { min: 0,  max: 3,   val: 1,  step: 1,   unit: '',   label: 'line end',
+             values: LINE_END_STOPS, affectsAll: true },
+  // Dynamic-nib axis — discrete rules for how the nib angle modulates
+  // along each stroke (uses the bezier tangent for wiggled/filleted
+  // pieces; the chord direction for straight ones). Only affects the
+  // §06 chisel-pen stage — the small previews don't sweep a nib.
+  nibMod:  { min: 0,  max: 4,   val: 0,  step: 1,   unit: '',   label: 'dynamic nib',
+             values: NIB_MOD_STOPS },
+  // Font options — set how the typeface is laid out, not the typeface
+  // itself. Rendered in a separate UI group; consumed directly by
+  // renderStage rather than feeding back into glyph geometry.
+  tracking: { min: 0,  max: 120, val: 16,  step: 1, unit: 'px', label: 'tracking', group: 'opts' },
+  leading:  { min: 0,  max: 240, val: 106, step: 1, unit: 'px', label: 'leading',  group: 'opts' },
+};
+
+const params = {};
+Object.keys(PARAM_SPECS).forEach(k => params[k] = PARAM_SPECS[k].val);
+
+/* — rendering — */
+
+function renderStage() {
+  designerStage.innerHTML = '';
+
+  // Glyph metrics in the current geometry.
+  const dots = computeDots();
+  const xs = dots.map(d => d[0]);
+  const ys = dots.map(d => d[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const glyphH = maxY - minY;
+  const glyphW = maxX - minX;
+
+  // Locked view dimensions: derived from PARAM_SPECS maxes so the SVG
+  // viewBox stays the same as the sliders move. This pins the visualiser
+  // at the "largest possible" view — shrinking an axis makes the glyph
+  // smaller in place instead of the SVG re-zooming to fit.
+  const maxAsc    = PARAM_SPECS.ascHeight.max;
+  const maxXh     = PARAM_SPECS.xHeight.max;
+  const maxDesc   = PARAM_SPECS.descHeight.max;
+  const maxStroke = Math.max(PARAM_SPECS.vWidth.max, PARAM_SPECS.hWidth.max);
+  const margin    = maxStroke / 2 + 6;
+  const lockedGlyphH = maxAsc + maxXh + maxDesc;
+
+  // Layout: monospaced cells, BEFORE per-character kern. The kern
+  // scales each character's advance (100 = this nominal advance).
+  // Tracking & leading are independent font options — they don't scale
+  // with glyph geometry, so the typesetter can tighten or loosen the
+  // line without reshaping the typeface.
+  const nominalAdv  = params.colGap * (COLS - 1) + params.tracking;
+  const lineAdv     = lockedGlyphH + params.leading;
+  const lineEnd     = currentLineEnd();
+
+  const charAdvance = ch => nominalAdv * (KERN[ch] ?? 100) / 100;
+
+  // Nib corners for this render pass — the chisel rectangle is the same
+  // for every segment, since it lives in screen space and doesn't depend
+  // on the segment being drawn. The dynamic-nib axis overrides this
+  // per-piece via `cornersFor`; when it's 'off', `cornersFor` is null
+  // and the fast path (one chisel sweep per straight segment) stands.
+  const corners   = nibCorners();
+  const nibMod    = currentNibMod();
+  const baseNib   = params.nibAngle;
+  const cornersFor = nibMod === 'off'
+    ? null
+    : (vx, vy, t) => nibCornersAt(effectiveNibAngle(vx, vy, t, nibMod, baseNib));
+
+  // Lay out each line: x-position per character + total line width.
+  const lines = typedText.split('\n');
+  if (lines.length === 0) lines.push('');
+  function layoutLine(line) {
+    const xs = [];
+    let x = 0;
+    for (let i = 0; i < line.length; i++) {
+      xs.push(x);
+      x += charAdvance(line[i]);
+    }
+    return { xs, width: x };
+  }
+  const layouts = lines.map(layoutLine);
+  const cursorLineIdx = lines.length - 1;
+  const cursorX       = layouts[cursorLineIdx].width;   // where next glyph would land
+
+  // Width of the canvas: widest line, plus a reserved slot at the cursor
+  // (sized at nominal advance) when focused so the ghost + caret have room.
+  // Width uses a *tracking-locked* nominal advance so moving the tracking
+  // slider doesn't re-zoom horizontally — letters bunch tighter or looser
+  // within a constant envelope. Glyph geometry (colGap, etc.) still
+  // re-zooms because that's a font-design change, not a typesetting one.
+  const maxNominalAdv = params.colGap * (COLS - 1) + PARAM_SPECS.tracking.max;
+  function widthAt(adv, line) {
+    let x = 0;
+    for (let i = 0; i < line.length; i++) x += adv * (KERN[line[i]] ?? 100) / 100;
+    return x;
+  }
+  const reserveGhost = stageFocused ? maxNominalAdv : 0;
+  const widestLine = Math.max(
+    glyphW,
+    ...lines.map((line, li) => widthAt(maxNominalAdv, line) + (li === cursorLineIdx ? reserveGhost : 0) + glyphW)
+  );
+
+  // SVG canvas. Height uses a leading-locked line advance so moving
+  // the leading slider doesn't re-zoom the viewBox — lines just sit
+  // tighter or looser within a constant envelope. Only typing more
+  // lines makes it grow.
+  const lineAdvForCanvas = lockedGlyphH + PARAM_SPECS.leading.max;
+  const contentW = widestLine;
+  const contentH = (lines.length - 1) * lineAdvForCanvas + lockedGlyphH;
+  const totalW   = contentW + margin * 2;
+  const totalH   = contentH + margin * 2;
+  // Baseline of the first line is anchored at the same viewBox y
+  // regardless of params: the glyph grows up/down from a fixed line.
+  const offX = -minX + margin;
+  const offY = margin + maxAsc + maxXh - (params.ascHeight + params.xHeight);
+
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${totalW} ${totalH}`);
+  svg.setAttribute('xmlns', SVG_NS);
+
+  const dotR = Math.max(1, Math.min(params.vWidth, params.hWidth) * 0.2);
+
+  function placeFor(gx, gy) {
+    return dots.map(([x, y]) => [x + gx + offX, y + gy + offY]);
+  }
+
+  // 0. Typographic guide lines for every text line: ascender top,
+  // x-height top, baseline (faint red), descender bottom. They sit
+  // beneath everything else and span the full canvas width.
+  const guideLeft  = 0;
+  const guideRight = totalW;
+  function drawGuide(y, color, width) {
+    const l = document.createElementNS(SVG_NS, 'line');
+    l.setAttribute('x1', guideLeft);
+    l.setAttribute('y1', y);
+    l.setAttribute('x2', guideRight);
+    l.setAttribute('y2', y);
+    l.setAttribute('stroke', color);
+    l.setAttribute('stroke-width', width);
+    l.setAttribute('stroke-linecap', 'butt');
+    svg.appendChild(l);
+  }
+  for (let li = 0; li < lines.length; li++) {
+    const lineY     = offY + li * lineAdv;
+    const ascTopY   = lineY;
+    const xhTopY    = lineY + params.ascHeight;
+    const baseY     = lineY + params.ascHeight + params.xHeight;
+    const descBotY  = baseY + params.descHeight;
+    drawGuide(ascTopY,  'rgba(26,24,20,0.22)', 1.5);
+    drawGuide(xhTopY,   'rgba(26,24,20,0.22)', 1.5);
+    drawGuide(baseY,    'rgba(184,35,30,0.35)', 1.5);
+    drawGuide(descBotY, 'rgba(26,24,20,0.22)', 1.5);
+  }
+
+  // 1. Ghost grid at the cursor's slot — only when focused. Always blunt;
+  // it's just a faint guide, the cap style is for the painted glyphs.
+  if (stageFocused) {
+    const placed = placeFor(cursorX, cursorLineIdx * lineAdv);
+    SEGMENTS.forEach(([a, b]) => {
+      const l = document.createElementNS(SVG_NS, 'line');
+      l.setAttribute('x1', placed[a][0]);
+      l.setAttribute('y1', placed[a][1]);
+      l.setAttribute('x2', placed[b][0]);
+      l.setAttribute('y2', placed[b][1]);
+      l.setAttribute('stroke', 'rgba(26,24,20,0.07)');
+      l.setAttribute('stroke-width', 1);
+      l.setAttribute('stroke-linecap', 'butt');
+      svg.appendChild(l);
+    });
+    placed.forEach(([x, y]) => {
+      const c = document.createElementNS(SVG_NS, 'circle');
+      c.setAttribute('cx', x);
+      c.setAttribute('cy', y);
+      c.setAttribute('r', dotR);
+      c.setAttribute('fill', 'rgba(26,24,20,0.2)');
+      svg.appendChild(c);
+    });
+  }
+
+  // 2. The typed characters — every painted element is a filled
+  // chisel-nib polygon. Wiggled segments and corner fillets are
+  // flattened to short straight pieces and each piece is chisel-swept;
+  // internal joints use 'angled' so neighbouring sweeps overlap and
+  // hide the polyline seam, while the ends honour the user's lineEnd.
+  for (let li = 0; li < lines.length; li++) {
+    const line   = lines[li];
+    const layout = layouts[li];
+    for (let ci = 0; ci < line.length; ci++) {
+      const ch = line[ci];
+      const active = GLYPHS[ch];
+      if (!active) continue;     // unknown or space → blank slot
+      const placed = placeFor(layout.xs[ci], li * lineAdv);
+      // Tangents and fillets track the placed (tilted/skewed) geometry
+      // so axis transforms cascade through wiggle and rounding.
+      const tangents = computeTangents(active, placed);
+      const { trims, fillets, eaten } = computeFillets(active, placed, params.rounding);
+      active.forEach(i => {
+        if (eaten.has(i)) return;
+        const [a, b] = SEGMENTS[i];
+        const tr = trims.get(i) || { startTrim: 0, endTrim: 0 };
+        const sx = placed[a][0], sy = placed[a][1];
+        const ex = placed[b][0], ey = placed[b][1];
+
+        // Apply trims along the segment axis. A trim eats up to the
+        // fillet endpoint; the segment between trims is what we draw.
+        let pax = sx, pay = sy, pbx = ex, pby = ey;
+        if (tr.startTrim > 0 || tr.endTrim > 0) {
+          const dxs = ex - sx, dys = ey - sy;
+          const Ls  = Math.hypot(dxs, dys);
+          if (Ls > 1e-6) {
+            const uxs = dxs / Ls, uys = dys / Ls;
+            pax = sx + uxs * tr.startTrim;
+            pay = sy + uys * tr.startTrim;
+            pbx = ex - uxs * tr.endTrim;
+            pby = ey - uys * tr.endTrim;
+          }
+        }
+        if ((pbx - pax) ** 2 + (pby - pay) ** 2 < 1e-4) return;   // fully eaten
+
+        // Trimmed endpoints butt against fillets — use 'angled' there
+        // so the chisel sweep overlaps the fillet's chiselled flatten.
+        // Untrimmed endpoints use the user's lineEnd.
+        const lineEndA = tr.startTrim > 0 ? 'angled' : lineEnd;
+        const lineEndB = tr.endTrim   > 0 ? 'angled' : lineEnd;
+
+        // Wiggle skips at trimmed ends because the dot's tangent no
+        // longer applies (the trim point is mid-chain, owned by the
+        // fillet).
+        const tA = tr.startTrim > 0 ? null : tangents.get(a);
+        const tB = tr.endTrim   > 0 ? null : tangents.get(b);
+        const useWiggle = params.wiggle > 0 && (tA || tB);
+
+        if (useWiggle) {
+          // Build the cubic the same way drawSegment does, then
+          // flatten and chisel each piece.
+          const ctrl = (px, py, qx, qy, tan) => {
+            if (!tan) return [px, py];
+            const dx = qx - px, dy = qy - py;
+            const L = Math.hypot(dx, dy);
+            if (L < 1e-6) return [px, py];
+            const dot = tan[0] * dx + tan[1] * dy;
+            const sign = dot >= 0 ? 1 : -1;
+            const mag = params.wiggle * L / 3;
+            return [px + sign * tan[0] * mag, py + sign * tan[1] * mag];
+          };
+          const c1 = ctrl(pax, pay, pbx, pby, tA);
+          const c2 = ctrl(pbx, pby, pax, pay, tB);
+          flattenAndChisel(svg, [pax, pay], c1, c2, [pbx, pby],
+                           corners, lineEndA, lineEndB, '#1a1814',
+                           undefined, undefined, cornersFor);
+        } else if (cornersFor) {
+          // Straight chord, but the dynamic axis wants per-piece nib —
+          // flatten the chord with the same machinery.
+          flattenAndChisel(svg, [pax, pay], null, null, [pbx, pby],
+                           corners, lineEndA, lineEndB, '#1a1814',
+                           undefined, undefined, cornersFor);
+        } else {
+          drawChiselSegment(svg, pax, pay, pbx, pby, corners, lineEndA, '#1a1814');
+        }
+      });
+
+      // Fillet beziers — each is flattened and chiselled, with both
+      // ends 'angled' so they butt-merge cleanly into the trimmed
+      // straight segments on either side. Dynamic-nib axis (if any)
+      // flows through cornersFor.
+      fillets.forEach(f => {
+        flattenAndChisel(svg, f.p1, f.c1, f.c2, f.p2,
+                         corners, 'angled', 'angled', '#1a1814',
+                         undefined, undefined, cornersFor);
+      });
+    }
+  }
+
+  // 3. Cursor — a thin line tracing the trajectory of the left column of
+  // the next-glyph slot, so it inherits tilt and skew. Independent of
+  // line-end style; always rendered as a butt line.
+  if (stageFocused) {
+    const placed = placeFor(cursorX, cursorLineIdx * lineAdv);
+    const c = document.createElementNS(SVG_NS, 'line');
+    const blIdx = COLS * (ROWS - 1);      // bottom-left dot index
+    c.setAttribute('x1', placed[0][0]);   // top-left dot of slot
+    c.setAttribute('y1', placed[0][1]);
+    c.setAttribute('x2', placed[blIdx][0]);
+    c.setAttribute('y2', placed[blIdx][1]);
+    c.setAttribute('stroke', 'var(--red)');
+    c.setAttribute('stroke-width', 2);
+    c.setAttribute('stroke-linecap', 'butt');
+    c.setAttribute('class', 'cursor-blink');
+    svg.appendChild(c);
+  }
+
+  // 4. Idle hint when nothing is typed and the stage isn't focused.
+  if (typedText.length === 0 && !stageFocused) {
+    const hint = document.createElementNS(SVG_NS, 'text');
+    hint.setAttribute('x', totalW / 2);
+    hint.setAttribute('y', totalH / 2);
+    hint.setAttribute('text-anchor', 'middle');
+    hint.setAttribute('dominant-baseline', 'middle');
+    hint.setAttribute('fill', 'rgba(26,24,20,0.4)');
+    hint.setAttribute('font-family', "'JetBrains Mono', monospace");
+    hint.setAttribute('font-size', '11');
+    hint.setAttribute('letter-spacing', '1.5');
+    hint.textContent = 'click and type';
+    svg.appendChild(hint);
+  }
+
+  designerStage.appendChild(svg);
+
+  // Update the readout strip.
+  charCountEl.textContent = typedText.length;
+  lineCountEl.textContent = lines.length;
+  rawTextEl.textContent  = typedText;
+}
+
+// Re-render every glyph surface — the §01 key palette, every specimen
+// cell, the open editor, and the §06 stage. Called when a parameter
+// changes that's not local to §06 (currently: lineEnd).
+function rerenderAll() {
+  buildKeyGroups();
+  for (const ch of cellByChar.keys()) refreshCell(ch);
+  if (editingChar) renderEditor();
+  renderStage();
+}
+
+/* — focus & key handling — */
+
+designerStage.addEventListener('focus', () => { stageFocused = true; renderStage(); });
+designerStage.addEventListener('blur',  () => { stageFocused = false; renderStage(); });
+designerStage.addEventListener('pointerdown', () => designerStage.focus());
+
+designerStage.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;   // leave shortcuts alone
+  let handled = true;
+  if      (e.key === 'Backspace') typedText = typedText.slice(0, -1);
+  else if (e.key === 'Enter')     typedText += '\n';
+  else if (e.key === 'Escape')    { designerStage.blur(); return; }
+  else if (e.key.length === 1)    typedText += e.key;
+  else handled = false;
+  if (handled) { e.preventDefault(); renderStage(); }
+});
+
+/* — slider construction — */
+
+function buildSliders() {
+  const geomContainer = document.getElementById('slidersContainer');
+  const optsContainer = document.getElementById('slidersContainerOpts');
+  Object.entries(PARAM_SPECS).forEach(([key, spec]) => {
+    const container = spec.group === 'opts' ? optsContainer : geomContainer;
+    const row = document.createElement('div');
+    row.className = 'slider-row';
+    row.innerHTML = `
+      <label>${spec.label}</label>
+      <input type="range" min="${spec.min}" max="${spec.max}"
+             value="${spec.val}" step="${spec.step}" id="s-${key}">
+      <span class="val" id="v-${key}">${formatVal(spec.val, spec)}</span>
+    `;
+    container.appendChild(row);
+    const slider = row.querySelector('input');
+    const valEl  = row.querySelector('.val');
+    slider.addEventListener('input', () => {
+      const v = parseFloat(slider.value);
+      params[key] = v;
+      valEl.textContent = formatVal(v, spec);
+      if (spec.affectsAll) rerenderAll();
+      else                 renderStage();
+    });
+  });
+  const note = document.createElement('div');
+  note.className = 'note-line';
+  note.textContent = 'Strokes are swept by the nib rectangle (h × v) at nib angle. Wiggled segments and fillets are flattened and chiselled, so every painted shape is a filled polygon. The dynamic-nib axis rotates the nib per flattened piece — visible here, ignored by the small previews.';
+  geomContainer.appendChild(note);
+}
+
+function formatVal(v, spec) {
+  if (spec.values) return spec.values[Math.round(v)] ?? '';
+  const s = (spec.step < 1) ? v.toFixed(1) : Math.round(v);
+  return s + spec.unit;
+}
+
+buildSliders();
+
+/* — buttons — */
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  typedText = '';
+  renderStage();
+  designerStage.focus();
+});
+document.getElementById('sampleBtn').addEventListener('click', () => {
+  typedText = SAMPLES[sampleIdx];
+  sampleIdx = (sampleIdx + 1) % SAMPLES.length;
+  renderStage();
+});
+document.getElementById('resetGeomBtn').addEventListener('click', () => {
+  Object.entries(PARAM_SPECS).forEach(([key, spec]) => {
+    params[key] = spec.val;
+    const s = document.getElementById('s-' + key);
+    const v = document.getElementById('v-' + key);
+    if (s) s.value = spec.val;
+    if (v) v.textContent = formatVal(spec.val, spec);
+  });
+  rerenderAll();
+});
+
+renderStage();
+</script>
+</body>
+</html>
